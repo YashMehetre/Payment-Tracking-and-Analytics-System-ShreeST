@@ -50,6 +50,12 @@
     <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="../assets/css/demo.css" />
 
+    <!--export css-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style1.css">
+    <!--export css end-->
+
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
@@ -61,6 +67,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
+
   </head>
 
   <body>
@@ -298,31 +305,59 @@
                
 <!-- Code for SBCC Project -->
 
+<div class="container">
+<table id="example" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Vendor Name</th>
+                <th>Bill No</th>
+                <th>Date</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Money Received</th>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        <tfoot>
+            <tr>
+                <th>Vendor Name</th>
+                <th>Quantity</th>
+                <th>Goods Type</th>
+                <th>Date</th>
+                <th>Total amount</th>
+                <th>Money Received</th>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
 <!-- /Code for SBCC Project -->
-
-
-
-
-
-              </div>
+            </div>
               <!--/ Layout Demo -->
             </div>
             <!-- / Content -->
@@ -382,6 +417,17 @@
 
     <script src="../assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
+    <!--export js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/script1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <!--export js-->
 
     <!-- Vendors JS -->
 
