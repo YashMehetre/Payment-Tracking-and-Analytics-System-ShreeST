@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+const { handleFetchVendors, handleAddVendors } = require('../handlers/vendorHandlers');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('dashboard', { title: 'Dashboard' });
@@ -29,5 +31,15 @@ router.get('/blank', function(req, res, next) {
 router.get('/icons', function(req, res, next) {
   res.render('icons', { title: 'Icons' });
 });
+
+
+
+// Routes using handler functions
+
+// Vendors Module
+router.get('/fetchVendors', handleFetchVendors);
+router.post('/addVendorData', handleAddVendors);
+
+
 
 module.exports = router;

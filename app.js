@@ -3,11 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const conn = require('./modules/database');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+// // initialize the express to parse JSON data to get the form data, the form data is nested data so we also have to specify the URL encoding as extended true.
+// app.use(express.json());       
+// app.use(express.urlencoded({extended: true})); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
