@@ -16,6 +16,12 @@ router.get('/viewData', function(req, res, next) {
 router.get('/analytics', function(req, res, next) {
   res.render('analytics', { title: 'Analytics' });
 });
+router.get('/addBill', function(req, res, next) {
+  res.render('addBill', { title: 'Add Bill' });
+});
+router.get('/addPayment', function(req, res, next) {
+  res.render('addPayment', { title: 'Add Payment' });
+});
 router.get('/editData', function(req, res, next) {
   res.render('editData', { title: 'Edit Data' });
 });

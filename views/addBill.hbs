@@ -178,6 +178,26 @@
               <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/addBill"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Add Bill</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/addPayment"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Add Payment</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/viewData"
                   aria-expanded="false"
                 >
@@ -234,7 +254,7 @@
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <div class="page-breadcrumb bg-white">
-          {{!-- <div class="row align-items-center">
+          {{! <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
               <h4 class="page-title">Blank Page</h4>
             </div>
@@ -250,7 +270,7 @@
                 >Upgrade to Pro</a>
               </div>
             </div>
-          </div> --}}
+          </div> }}
           <!-- /.col-lg-12 -->
         </div>
         <!-- ============================================================== -->
@@ -284,105 +304,108 @@
                 </div>
 
                 <form action="/addVendorData" method="post">
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  <label for="billNum">Bill No.</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="billNum"
-                    name="billNum"
-                    placeholder="Bill Number"
-                    value="37"
-                    disabled
-                  />
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="vendorFirm">Date</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="vendorFirm"
-                    name="vendorFirm"
-                    placeholder="Vendor Firm"
-                  />
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="goodsType">Goods Type</label>
-                  <select id="goodsType" name="goodsType" class="form-control">
-                     <option selected>Pomegranate</option>
-                    <option>Onion</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  <label for="billNum">Total Boxes</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="billNum"
-                    name="billNum"
-                    placeholder="Bill Number"
-                  />
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="billNum">Weight (kg)</label>
-                  <input
-                    type="float"
-                    class="form-control"
-                    id="billNum"
-                    name="billNum"
-                    placeholder="Bill Number"
-                  />
-                </div>
-               <div class="form-group col-md-4">
-                  <label for="billNum">Total Weight (kg)</label>
-                  <input
-                    type="float"
-                    class="form-control"
-                    id="billNum"
-                    name="billNum"
-                    placeholder="Bill Number"
-                  />
-                </div>
-                
-              </div>
-              <div class="form-row">
-                  <div class="form-group col-md-4">
-                  <label for="billNum">Market Amount (Rs.)</label>
-                  <input
-                    type="float"
-                    class="form-control"
-                    id="billNum"
-                    name="billNum"
-                    placeholder="Bill Number"
-                  />
-                </div>
-               <div class="form-group col-md-4">
-                  <label for="billNum">Party Amount (Rs.)</label>
-                  <input
-                    type="float"
-                    class="form-control"
-                    id="billNum"
-                    name="billNum"
-                    placeholder="Bill Number"
-                  />
-                </div>
-               
-              </div>
-              
-              <button type="submit" class="btn btn-success">Add Bill</button>
-              &nbsp;
-              &nbsp;
-              <button  class="btn btn-primary">Cancel</button>
-            </form>
-<br>
-<br>
- <button type="submit" class="btn btn-danger">Delete an Existing Bill </button>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="billNum">Bill No.</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="billNum"
+                        name="billNum"
+                        placeholder="Bill Number"
+                        value="37"
+                        disabled
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="vendorFirm">Date</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="vendorFirm"
+                        name="vendorFirm"
+                        placeholder="Vendor Firm"
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="goodsType">Goods Type</label>
+                      <select
+                        id="goodsType"
+                        name="goodsType"
+                        class="form-control"
+                      >
+                        <option selected>Pomegranate</option>
+                        <option>Onion</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="billNum">Total Boxes</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="billNum"
+                        name="billNum"
+                        placeholder="Bill Number"
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="billNum">Weight (kg)</label>
+                      <input
+                        type="float"
+                        class="form-control"
+                        id="billNum"
+                        name="billNum"
+                        placeholder="Bill Number"
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="billNum">Total Weight (kg)</label>
+                      <input
+                        type="float"
+                        class="form-control"
+                        id="billNum"
+                        name="billNum"
+                        placeholder="Bill Number"
+                      />
+                    </div>
 
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="billNum">Market Amount (Rs.)</label>
+                      <input
+                        type="float"
+                        class="form-control"
+                        id="billNum"
+                        name="billNum"
+                        placeholder="Bill Number"
+                      />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="billNum">Party Amount (Rs.)</label>
+                      <input
+                        type="float"
+                        class="form-control"
+                        id="billNum"
+                        name="billNum"
+                        placeholder="Bill Number"
+                      />
+                    </div>
 
-        
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Add Bill</button>
+                  &nbsp; &nbsp;
+                  <button class="btn btn-primary">Cancel</button>
+                </form>
+                <br />
+                <br />
+                <button type="submit" class="btn btn-danger">Delete an Existing
+                  Bill
+                </button>
+
               </div>
             </div>
           </div>
