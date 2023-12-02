@@ -235,6 +235,16 @@
                   <span class="hide-menu">Vendors</span>
                 </a>
               </li>
+                  <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/addPaymentMode"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Add Payment Mode</span>
+                </a>
+              </li>
 
             </ul>
 
@@ -283,27 +293,29 @@
           <!-- ============================================================== -->
           <!-- Start Page Content -->
           <!-- ============================================================== -->
+         {{#if status}}
+        <h6 style="color: rgb(11, 196, 11);">Bill Added Succesfully</h6>
+        {{/if}}
+         
           <div class="row">
             <div class="col-md-12">
               <div class="white-box">
 
-                <h6>Choose the Vendor Firm Name :</h6>
+                <form action="/addBillData" method="post">
+
+                 <h6>Choose the Vendor Firm Name :</h6>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <label
                       class="input-group-text"
-                      for="inputGroupSelect01"
+                      for="vendorFirmName"
                     >Vendor Firm</label>
                   </div>
-                  <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                  <select class="custom-select" id="vendorFirmName" name="vendorFirmName" required>
+                    <option value="" selected></option>
                   </select>
                 </div>
 
-                <form action="/addVendorData" method="post">
                   <div class="form-row">
                     <div class="form-group col-md-4">
                       <label for="billNum">Bill No.</label>
@@ -313,25 +325,24 @@
                         id="billNum"
                         name="billNum"
                         placeholder="Bill Number"
-                        value="37"
+                        value="10"
                         disabled
                       />
                     </div>
                     <div class="form-group col-md-4">
-                      <label for="vendorFirm">Date</label>
+                      <label for="billDate">Date</label>
                       <input
                         type="date"
                         class="form-control"
-                        id="vendorFirm"
-                        name="vendorFirm"
-                        placeholder="Vendor Firm"
+                        id="billDate"
+                        name="billDate"
                       />
                     </div>
                     <div class="form-group col-md-4">
-                      <label for="goodsType">Goods Type</label>
+                      <label for="billGoodsType">Goods Type</label>
                       <select
-                        id="goodsType"
-                        name="goodsType"
+                        id="billGoodsType"
+                        name="billGoodsType"
                         class="form-control"
                       >
                         <option selected>Pomegranate</option>
@@ -341,57 +352,72 @@
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">
-                      <label for="billNum">Total Boxes</label>
+                      <label for="billTotalBoxes">Total Boxes</label>
                       <input
                         type="number"
                         class="form-control"
-                        id="billNum"
-                        name="billNum"
-                        placeholder="Bill Number"
+                        id="billTotalBoxes"
+                        name="billTotalBoxes"
+                        placeholder="Total Boxes"
                       />
                     </div>
                     <div class="form-group col-md-4">
-                      <label for="billNum">Weight (kg)</label>
+                      <label for="billWeightPerBox">Weight (kg)</label>
                       <input
                         type="float"
                         class="form-control"
-                        id="billNum"
-                        name="billNum"
-                        placeholder="Bill Number"
+                        id="billWeightPerBox"
+                        name="billWeightPerBox"
+                        placeholder="Weight (kg)"
                       />
                     </div>
                     <div class="form-group col-md-4">
-                      <label for="billNum">Total Weight (kg)</label>
+                      <label for="billTotalWeight">Total Weight (kg)</label>
                       <input
                         type="float"
                         class="form-control"
-                        id="billNum"
-                        name="billNum"
-                        placeholder="Bill Number"
+                        id="billTotalWeight"
+                        name="billTotalWeight"
+                        placeholder="Total Weight (kg)"
                       />
                     </div>
 
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">
-                      <label for="billNum">Market Amount (Rs.)</label>
+                      <label for="billMarketAmount">Market Amount (Rs.)</label>
                       <input
                         type="float"
                         class="form-control"
-                        id="billNum"
-                        name="billNum"
-                        placeholder="Bill Number"
+                        id="billMarketAmount"
+                        name="billMarketAmount"
+                        placeholder="Market Amount (Rs.)"
                       />
                     </div>
                     <div class="form-group col-md-4">
-                      <label for="billNum">Party Amount (Rs.)</label>
+                      <label for="billPaymentAmount">Party Payment Amount (Rs.)</label>
                       <input
                         type="float"
                         class="form-control"
-                        id="billNum"
-                        name="billNum"
-                        placeholder="Bill Number"
+                        id="billPaymentAmount"
+                        name="billPaymentAmount"
+                        placeholder="Amount (Rs.)"
                       />
+                    </div>
+
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Extra Details (Optional)</span>
+                      </div>
+                      <textarea
+                        class="form-control"
+                        aria-label="With textarea"
+                        name="billMoreDetails"
+                      ></textarea>
+                    </div>
                     </div>
 
                   </div>
@@ -453,6 +479,8 @@
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
+    <script src="js/bills.js"></script>
+
   </body>
 
 </html>

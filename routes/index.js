@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { handleFetchVendors, handleAddVendors } = require('../handlers/vendorHandlers');
+const { handleFetchVendorsForSelect, handleAddBillData } = require('../handlers/billHandlers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,11 +17,22 @@ router.get('/viewData', function(req, res, next) {
 router.get('/analytics', function(req, res, next) {
   res.render('analytics', { title: 'Analytics' });
 });
+
+//Add Bill
 router.get('/addBill', function(req, res, next) {
   res.render('addBill', { title: 'Add Bill' });
 });
+// router.post('/addBillData', handleAddBillData);
+router.get('/fetchVendorsForSelect',handleFetchVendorsForSelect);
+router.post('/addBillData',handleAddBillData);
+
+
+
 router.get('/addPayment', function(req, res, next) {
   res.render('addPayment', { title: 'Add Payment' });
+});
+router.get('/addPaymentMode', function(req, res, next) {
+  res.render('addPaymentMode', { title: 'Add Payment Mode' });
 });
 router.get('/editData', function(req, res, next) {
   res.render('editData', { title: 'Edit Data' });
