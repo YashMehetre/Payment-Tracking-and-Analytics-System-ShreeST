@@ -3,16 +3,15 @@
 const fetchVendorsForSelect = async() =>{
     const response = await fetch('/fetchVendorsForSelect');
     const data = await response.json();
-    showVendorsForSelect(data);
+    return data;
 }
 
-const showVendorsForSelect = (data) =>{
+const showVendorsForSelect = async () =>{
+    const data = await fetchVendorsForSelect();
     data.forEach(e => {
         let option = document.createElement('option');
         option.innerHTML = `<option value="${e.vendorId}">${e.vendorFirm}</option>`;
         document.getElementById("vendorFirmName").appendChild(option);
     });
 }
-fetchVendorsForSelect();
-
-
+showVendorsForSelect();

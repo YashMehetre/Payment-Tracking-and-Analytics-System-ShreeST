@@ -4,6 +4,7 @@ var router = express.Router();
 const { handleFetchVendors, handleAddVendors } = require('../handlers/vendorHandlers');
 const { handleFetchVendorsForSelect, handleAddBillData } = require('../handlers/billHandlers');
 const {handleAddPaymentModeData, handleFetchPaymentModes} = require('../handlers/paymentModeHandlers');
+const {addPaymentDataHandler,handleFetchPaymentModesForSelect} = require('../handlers/addPaymentHandlers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,9 +24,6 @@ router.get('/analytics', function(req, res, next) {
 
 router.get('/addPayment', function(req, res, next) {
   res.render('addPayment', { title: 'Add Payment' });
-});
-router.get('/addPaymentMode', function(req, res, next) {
-  res.render('addPaymentMode', { title: 'Add Payment Mode' });
 });
 router.get('/editData', function(req, res, next) {
   res.render('editData', { title: 'Edit Data' });
@@ -65,6 +63,10 @@ router.post('/addBillData',handleAddBillData);
 
 // Add Payment Mode Module
 router.get('/fetchPaymentModes',handleFetchPaymentModes);
-router.post('/addPaymentModeData',handleAddPaymentModeData)
+router.post('/addPaymentModeData',handleAddPaymentModeData);
+
+// Add Payment Module
+router.post('/addPaymentData',addPaymentDataHandler);
+router.get('/fetchPaymentModesForSelect',handleFetchPaymentModesForSelect )
 
 module.exports = router;
