@@ -296,71 +296,84 @@
           <div class="row">
             <div class="col-md-12">
               <div class="white-box">
+                {{#if status}}
+        <h6 style="color: rgb(11, 196, 11);">Payment Mode Added Succesfully</h6>
+        {{/if}}
+                <form action="/addPaymentModeData" method="post">
 
-                <h6>Choose the Vendor Firm Name :</h6>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label
-                      class="input-group-text"
-                      for="inputGroupSelect01"
-                    >Vendor Firm</label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelect01">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                  <label for="paymentModeName">New Payment Mode Name </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="paymentModeName"
+                    name="paymentModeName"
+                    placeholder="Payment Mode Name"
+                  />
+                </div>
+</div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                  <label for="paymentModeStatus">Payment Mode Status</label>
+                  <select id="paymentModeStatus" name="paymentModeStatus" class="form-control">
                     <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
                   </select>
                 </div>
-
-                <form action="/addVendorData" method="post">
-                <div class="form-row"><div class="form-group col-md-4">
-                      <label for="vendorFirm">Date</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="vendorFirm"
-                        name="vendorFirm"
-                        placeholder="Vendor Firm"
-                      />
-                    </div><div class="form-group col-md-8">
-                      <label for="goodsType">Payment Mode</label>
-                      <select
-                        id="goodsType"
-                        name="goodsType"
-                        class="form-control"
-                      >
-                        <option selected>Cash</option>
-                        <option>Onion</option>
-                      </select>
-                    </div>
-                    </div>
                 
-                  <div class="form-row">
-              
-                    <div class="form-group col-md-4">
-                      <label for="billNum">Party Amount (Rs.)</label>
-                      <input
-                        type="float"
+
+                  </div>
+                   <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Extra Details (Optional)</span>
+                      </div>
+                      <textarea
                         class="form-control"
-                        id="billNum"
-                        name="billNum"
-                        placeholder="Bill Number"
-                      />
+                        aria-label="With textarea"
+                        name="paymentModeDetails"
+                      ></textarea>
+                    </div>
                     </div>
 
                   </div>
 
-                  <button type="submit" class="btn btn-success">Add Bill</button>
+                  <button type="submit" class="btn btn-success">Add Payment Mode</button>
                   &nbsp; &nbsp;
                   <button class="btn btn-primary">Cancel</button>
                 </form>
                 <br />
                 <br />
-                <button type="submit" class="btn btn-danger">Delete an Existing
-                  Payment
+                <button class="btn btn-danger" onclick="scrollToTable()">Delete an Existing
+                  Payment Mode
                 </button>
 
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="white-box">
+                <h3 class="box-title">Payment Modes </h3>
+                {{!-- <p class="text-muted">Add class <code>.table</code></p> --}}
+                <div class="table-responsive">
+                  <table class="table text-nowrap">
+                    <thead>
+                      <tr>
+                        <th class="border-top-0">#</th>
+                        <th class="border-top-0">Payment Mode Name</th>
+                        <th class="border-top-0">Payment Mode Details</th>
+                        <th class="border-top-0">Payment Mode Status</th>
+                        <th class="border-top-0">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="paymentModes">
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -408,6 +421,7 @@
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
+    <script src="js/paymentMode.js"></script>
   </body>
 
 </html>

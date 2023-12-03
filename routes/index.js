@@ -3,6 +3,7 @@ var router = express.Router();
 
 const { handleFetchVendors, handleAddVendors } = require('../handlers/vendorHandlers');
 const { handleFetchVendorsForSelect, handleAddBillData } = require('../handlers/billHandlers');
+const {handleAddPaymentModeData, handleFetchPaymentModes} = require('../handlers/paymentModeHandlers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -18,15 +19,7 @@ router.get('/analytics', function(req, res, next) {
   res.render('analytics', { title: 'Analytics' });
 });
 
-//Add Bill
-router.get('/addBill', function(req, res, next) {
-  res.render('addBill', { title: 'Add Bill' });
-});
-// router.post('/addBillData', handleAddBillData);
-router.get('/fetchVendorsForSelect',handleFetchVendorsForSelect);
-router.post('/addBillData',handleAddBillData);
-
-
+// Default Routing
 
 router.get('/addPayment', function(req, res, next) {
   res.render('addPayment', { title: 'Add Payment' });
@@ -52,8 +45,12 @@ router.get('/icons', function(req, res, next) {
 router.get('/pratik', function(req, res, next) {
   res.render('pratik',{name:"Yash"});
 });
-
-
+router.get('/addBill', function(req, res, next) {
+  res.render('addBill', { title: 'Add Bill' });
+});
+router.get('/addPaymentMode', function(req, res, next) {
+  res.render('addPaymentMode', { title: 'Add Payment Mode' });
+});
 
 // Routes using handler functions
 
@@ -62,5 +59,12 @@ router.get('/fetchVendors', handleFetchVendors);
 router.post('/addVendorData', handleAddVendors);
 
 
+//Add Bill Module
+router.get('/fetchVendorsForSelect',handleFetchVendorsForSelect);
+router.post('/addBillData',handleAddBillData);
+
+// Add Payment Mode Module
+router.get('/fetchPaymentModes',handleFetchPaymentModes);
+router.post('/addPaymentModeData',handleAddPaymentModeData)
 
 module.exports = router;
