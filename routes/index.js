@@ -31,9 +31,6 @@ router.get('/blank', function(req, res, next) {
 router.get('/icons', function(req, res, next) {
   res.render('icons', { title: 'Icons' });
 });
-router.get('/pratik', function(req, res, next) {
-  res.render('pratik',{name:"Yash"});
-});
 
 
 
