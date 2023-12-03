@@ -9,10 +9,6 @@ async function fetchVendors(){
     // console.log(data);
     showVendors(data);
 }
-
-
-
-
 function showVendors(data){
     data.forEach(e => {
         let row = document.createElement('tr')
@@ -31,7 +27,7 @@ function showVendors(data){
                 <button type="submit" class="btn btn-danger">Delete</button>
             </td>
         </tr>`;
-        document.querySelector(".vendors").appendChild(row)
+        document.querySelector(".vendors").appendChild(row);
     
     });
    
