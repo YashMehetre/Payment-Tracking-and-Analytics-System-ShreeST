@@ -121,3 +121,10 @@ function exportToPDF() {
         document.body.removeChild(iframe);
     }, 1000);
 }
+function exportToXLSX() {
+    const tableContainer = document.getElementById('table-responsive');
+    const date = new Date();
+    let filename = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    const wb = XLSX.utils.table_to_book(tableContainer, { sheet: filename });
+    XLSX.writeFile(wb, `${filename}.xlsx`);
+}
