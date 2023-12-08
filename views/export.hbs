@@ -40,7 +40,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-        <style>
+    <style>
         .logo{
             height: 60px; 
             width: 60px; 
@@ -96,10 +96,10 @@
               </b>
               <!--End Logo icon -->
               <!-- Logo text -->
-              {{!-- <span class="logo-text">
+              {{!-- <span class="logo-text"> --}}
                 <!-- dark Logo text -->
-                <img src="plugins/images/logo-text.png" alt="homepage" />
-              </span> --}}
+                {{!-- <img src="plugins/images/logo-text.png" alt="homepage" /> --}}
+              {{!-- </span> --}}
             </a>
             <!-- ============================================================== -->
             <!-- End Logo -->
@@ -181,36 +181,26 @@
             <ul id="sidebarnav">
               <!-- User Profile-->
               <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Dashboard</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/export"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Export Data</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/addBill"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Add Bill</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li> <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/export"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Export Data</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addBill"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Add Bill</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPayment"
@@ -220,47 +210,36 @@
                   <span class="hide-menu">Add Payment</span>
                 </a>
               </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/viewData"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">View Data</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/editData"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Edit Data</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/analytics"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Analytics</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/addVendor"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Vendors</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
+                        {{!-- <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/viewData"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">View Data</span>
+                            </a>
+                        </li> --}}
+                        {{!-- <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/editData"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Edit Data</span>
+                            </a>
+                        </li> --}}
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/analytics"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Analytics</span>
+                            </a>
+                        </li> 
+                        
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addVendor"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Vendors</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPaymentMode"
