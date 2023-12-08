@@ -382,7 +382,8 @@
             placeholder="Search"
             aria-label="Search"
             id="searchBar"
-            onkeyup="search(1)"
+            name="searchBar"
+            {{!-- onkeyup="search()" --}}
           />
           <br />
           <div class="row">
@@ -391,7 +392,7 @@
                 <h3 class="box-title">Vendors</h3>
                 {{!-- <p class="text-muted">Add class <code>.table</code></p> --}}
                 <div class="table-responsive">
-                  <table class="table text-nowrap">
+                  <table class="table text-nowrap" id="vendorsTable">
                     <thead>
                       <tr>
                         <th class="border-top-0">#</th>
@@ -431,8 +432,8 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-          2021 © Ample Admin brought to you by
-          <a href="https://www.wrappixel.com/">wrappixel.com</a>
+          {{!-- 2021 © Ample Admin brought to you by
+          <a href="https://www.wrappixel.com/">wrappixel.com</a> --}}
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->

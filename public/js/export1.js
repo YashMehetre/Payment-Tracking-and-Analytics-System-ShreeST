@@ -68,7 +68,7 @@ async function showLoadingReport(){
 // Search functionality function
 function searchVendorFirm() {
     const searchInput = document.getElementById("searchInput");
-    const table = document.getElementById("data-table-table");
+    const table = document.getElementById("table");
     const rows = table.getElementsByTagName("tr");
 
     searchInput.addEventListener("input", function () {
