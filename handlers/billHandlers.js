@@ -5,7 +5,7 @@ const handleFetchVendorsForSelect = async (req, res) => {
     try {
         const [result] = await pool.promise().query(sql);
         res.json(result);
-        console.log(result);
+        // console.log(result);
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal Server Error");
@@ -16,7 +16,7 @@ const handleAddBillData = async (req, res) => {
     try {
         let data = req.body;
         let vendorId = await getVendorId(data.vendorFirmName);
-        console.log(vendorId);
+        // console.log(vendorId);
         let insertSql = `INSERT INTO billdetails(vendorId, billDate, billGoodsType, billTotalBoxes, billWeightPerBox, billTotalWeight, billMarketAmount, billPaymentAmount, billMoreDetails) VALUES (${vendorId},"${data.billDate}","${data.billGoodsType}",${data.billTotalBoxes},${data.billWeightPerBox},${data.billTotalWeight},${data.billMarketAmount},${data.billPaymentAmount},"${data.billMoreDetails}")`;
 
         await pool.promise().execute(insertSql, [
@@ -51,6 +51,15 @@ const getVendorId = async (vendorFirm) => {
         throw error;
     }
 };
+const handleGetLastBillNum = async (req, res) => {
+    let sql = `SELECT billNum FROM billdetails ORDER BY billNum DESC LIMIT 1`;
+    try {
+        const [result] = await pool.promise().query(sql);
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+};
 
-
-module.exports = {handleFetchVendorsForSelect, handleAddBillData};
+module.exports = {handleFetchVendorsForSelect, handleAddBillData, handleGetLastBillNum};
