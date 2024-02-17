@@ -1,11 +1,13 @@
+// Used to display the report in the frontend
+
 document.addEventListener("DOMContentLoaded", () => {
     showLoadingReport();
-    const time = setTimeout(() => loadSum(), 1000);
+    setTimeout(() => loadSum(), 1000);
 });
 
 function loadSum() {
     // Get all rows in the table body
-    const tableBody = document.querySelector("tfoot");
+    const tableBody = document.querySelector("tbody");
     const rows = tableBody.getElementsByTagName("tr");
 
     // Initialize sum variables
@@ -35,16 +37,29 @@ function loadSum() {
     // Display the sum row
     document.getElementById("sumRow").style.display = "table-row";
     searchVendorFirm();
-   
 }
-const fetchLoadingReport = async() =>{ 
-    const response = await fetch('/fetchLoadingReport');
+const generateReportHandler = async() =>{
+    urlParams = new URLSearchParams(window.location.search);
+    const reportType = urlParams.get('reportType');
+    console.log(reportType);
+    const vendorFirmName = urlParams.get('vendorFirmName') || "";
+    console.log(vendorFirmName);
+    const fromDate = urlParams.get('fromDate');
+    console.log(fromDate);
+    const toDate = urlParams.get('toDate');
+    if (reportType == 1) {
+        url = `/generateReport?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
+    } else {
+        url = `/generateReport?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
+    }
+    const response = await fetch(url);
     const data = await response.json();
     return data;
 }
 
 async function showLoadingReport(){
-    const data = await fetchLoadingReport();
+    const data = await generateReportHandler();
+    // console.log(data);
     data.forEach(e => {
         const row = document.createElement('tr');
         row.innerHTML = `<tr>
@@ -62,6 +77,7 @@ async function showLoadingReport(){
         // console.log(row);
         document.getElementById("data-table-table").appendChild(row);
     });
+   
 }
 
 

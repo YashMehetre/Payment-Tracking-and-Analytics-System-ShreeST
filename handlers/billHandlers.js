@@ -5,6 +5,7 @@ const handleFetchVendorsForSelect = async (req, res) => {
     try {
         const [result] = await pool.promise().query(sql);
         res.json(result);
+        console.log(result);
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal Server Error");

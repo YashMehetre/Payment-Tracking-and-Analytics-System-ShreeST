@@ -5,7 +5,7 @@ const { handleFetchVendors, handleAddVendors } = require('../handlers/vendorHand
 const { handleFetchVendorsForSelect, handleAddBillData } = require('../handlers/billHandlers');
 const {handleAddPaymentModeData, handleFetchPaymentModes} = require('../handlers/paymentModeHandlers');
 const {addPaymentDataHandler,handleFetchPaymentModesForSelect} = require('../handlers/addPaymentHandlers');
-const {addReportGenerationParamsHandler,fetchLoadingReportHandler} = require('../handlers/exportHandlers');
+const {generateReportHandler} = require('../handlers/exportHandlers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -53,9 +53,7 @@ router.get('/addPaymentMode', function(req, res, next) {
 router.get('/export', function(req, res, next) {
   res.render('export', { title: 'Export' });
 });
-router.get('/export1', function(req, res, next) {
-  res.render('export1', { title: 'Loading Report',vendorFirmName:'Yash Traders',fromDate:'2023-06-08',toDate:'2023-06-08'});
-});
+
 
 // Routes using handler functions
 
@@ -78,6 +76,11 @@ router.get('/fetchPaymentModesForSelect',handleFetchPaymentModesForSelect );
 
 // Export Data Module
 
-router.post('/addReportGenerationParams',addReportGenerationParamsHandler);
-router.get('/fetchLoadingReport',fetchLoadingReportHandler )
+router.get('/generateReport',generateReportHandler);
+router.get('/showReport', function(req, res){
+  res.render('showReport', { title: `${req.query.reportType==2?'Vendorwise Loading Report':req.query.reportType==2?'Loading Vendor Deposit/Pending Amount Report':'Loading Report'}`,fromDate :`${req.query.fromDate}`,
+  toDate : `${req.query.toDate}`,
+  vendorFirmName : `${req.query.reportType==1?'All':req.query.vendorFirmName}`});
+});
+
 module.exports = router;
