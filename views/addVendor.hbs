@@ -129,7 +129,7 @@
             id="navbarSupportedContent"
             data-navbarbg="skin5"
           >
-          &nbsp;&nbsp;&nbsp;<h3 style="color: white;">Vendors</h3>
+          &nbsp;&nbsp;&nbsp;<h5 style="color: white;">Vendors</h5>
             <ul class="navbar-nav d-none d-md-block d-lg-none">
               <li class="nav-item">
                 <a
@@ -179,57 +179,74 @@
             <ul id="sidebarnav">
               <!-- User Profile-->
               <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li> <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/export"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Export Data</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addBill"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Add Bill</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/"
+                  href="/addPayment"
                   aria-expanded="false"
                 >
                   <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Dashboard</span>
+                  <span class="hide-menu">Add Payment</span>
                 </a>
               </li>
-              <li class="sidebar-item pt-2">
+                        {{!-- <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/viewData"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">View Data</span>
+                            </a>
+                        </li> --}}
+                        {{!-- <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/editData"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Edit Data</span>
+                            </a>
+                        </li> --}}
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/analytics"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Analytics</span>
+                            </a>
+                        </li> 
+                        
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addVendor"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Vendors</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/viewData"
+                  href="/addPaymentMode"
                   aria-expanded="false"
                 >
                   <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">View Data</span>
+                  <span class="hide-menu">Add Payment Mode</span>
                 </a>
               </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/editData"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Edit Data</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/analytics"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Analytics</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/addVendor"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Vendors</span>
-                </a>
-              </li>
-            </ul>
-
           </nav>
           <!-- End Sidebar navigation -->
         </div>
@@ -365,7 +382,8 @@
             placeholder="Search"
             aria-label="Search"
             id="searchBar"
-            onkeyup="search(1)"
+            name="searchBar"
+            {{!-- onkeyup="search()" --}}
           />
           <br />
           <div class="row">
@@ -374,7 +392,7 @@
                 <h3 class="box-title">Vendors</h3>
                 {{!-- <p class="text-muted">Add class <code>.table</code></p> --}}
                 <div class="table-responsive">
-                  <table class="table text-nowrap">
+                  <table class="table text-nowrap" id="vendorsTable">
                     <thead>
                       <tr>
                         <th class="border-top-0">#</th>
@@ -414,8 +432,8 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-          2021 © Ample Admin brought to you by
-          <a href="https://www.wrappixel.com/">wrappixel.com</a>
+          {{!-- 2021 © Ample Admin brought to you by
+          <a href="https://www.wrappixel.com/">wrappixel.com</a> --}}
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->

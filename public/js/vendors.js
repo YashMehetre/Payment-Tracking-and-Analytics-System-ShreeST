@@ -1,5 +1,6 @@
 window.onload = () => {
     fetchVendors();
+    searchVendorFirm();
   };
   
 
@@ -33,4 +34,19 @@ function showVendors(data){
    
     
 }
+function searchVendorFirm() {
+    const searchInput = document.getElementById("searchBar");
+    const table = document.getElementById("vendorsTable");
+    const rows = table.getElementsByTagName("tr");
 
+    searchInput.addEventListener("input", function () {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        Array.from(rows).forEach((row, index) => {
+            if (index < rows.length) { // Exclude the last row (sum row)
+                const vendorFirm = row.cells[2].innerText.toLowerCase(); // Assuming Vendor Firm is in the fourth column
+                row.style.display = vendorFirm.includes(searchTerm) ? "" : "none";
+            }
+        });
+    });
+}

@@ -40,7 +40,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-        <style>
+    <style>
         .logo{
             height: 60px; 
             width: 60px; 
@@ -96,10 +96,10 @@
               </b>
               <!--End Logo icon -->
               <!-- Logo text -->
-              {{!-- <span class="logo-text">
+              {{!-- <span class="logo-text"> --}}
                 <!-- dark Logo text -->
-                <img src="plugins/images/logo-text.png" alt="homepage" />
-              </span> --}}
+                {{!-- <img src="plugins/images/logo-text.png" alt="homepage" /> --}}
+              {{!-- </span> --}}
             </a>
             <!-- ============================================================== -->
             <!-- End Logo -->
@@ -120,6 +120,8 @@
             id="navbarSupportedContent"
             data-navbarbg="skin5"
           >
+                    &nbsp;&nbsp;&nbsp;<h5 style="color: white;">Export Data</h5>
+
             <ul class="navbar-nav d-none d-md-block d-lg-none">
               <li class="nav-item">
                 <a
@@ -181,36 +183,26 @@
             <ul id="sidebarnav">
               <!-- User Profile-->
               <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Dashboard</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/export"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Export Data</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/addBill"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Add Bill</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li> <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/export"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Export Data</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addBill"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Add Bill</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPayment"
@@ -220,47 +212,36 @@
                   <span class="hide-menu">Add Payment</span>
                 </a>
               </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/viewData"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">View Data</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/editData"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Edit Data</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/analytics"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Analytics</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="/addVendor"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-clock" aria-hidden="true"></i>
-                  <span class="hide-menu">Vendors</span>
-                </a>
-              </li>
-              <li class="sidebar-item pt-2">
+                        {{!-- <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/viewData"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">View Data</span>
+                            </a>
+                        </li> --}}
+                        {{!-- <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/editData"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Edit Data</span>
+                            </a>
+                        </li> --}}
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/analytics"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Analytics</span>
+                            </a>
+                        </li> 
+                        
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addVendor"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Vendors</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPaymentMode"
@@ -322,67 +303,63 @@
             <div class="col-md-12">
               <div class="white-box">
 
-                <form action="/addReportGenerationParams" method="post">
-
-                  <h6>Choose the Report Type :</h6>
+                <h6>Choose the Report Type :</h6>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label
+                      class="input-group-text"
+                      for="reportType"
+                    >Options</label>
+                  </div>
+                  <select
+                    class="custom-select"
+                    id="reportType"
+                    name="reportType"
+                    {{!-- onchange="showSelectVendor()" --}}
+                  >
+                    <option value="1">Loading Report</option>
+                    <option value="2">Vendorwise Loading Report</option>
+                    <option value="3">Loading Vendor Deposit/Pending Amount Report</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <label for="reportFromDate">From</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="reportFromDate"
+                      name="reportFromDate"
+                    />
+                  </div><div class="form-group col-md-4">
+                    <label for="reportToDate">To</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="reportToDate"
+                      name="reportToDate"
+                    />
+                  </div>
+                </div>
+                <div class="row selectVendor" style="display: none;" >
+                  <h6>Choose the Vendor Firm Name :</h6>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <label
                         class="input-group-text"
-                        for="reportType"
-                      >Options</label>
+                        for="vendorFirmName"
+                      >Vendor Firm</label>
                     </div>
                     <select
                       class="custom-select"
-                      id="reportType"
-                      name="reportType"
-                      onchange="showSelectVendor()"
+                      id="vendorFirmName"
+                      name="vendorFirmName"
                     >
-                      <option value="1">Loading Report</option>
-                      <option value="2">Vendorwise Loading Report</option>
-                      <option value="3">Loading Vendor Deposit/Pending Amount
-                        Report</option>
+                      <option value="" selected></option>
                     </select>
                   </div>
-                  <div class="row">
-                    <div class="form-group col-md-4">
-                      <label for="reportFromDate">From</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="reportFromDate"
-                        name="reportFromDate"
-                      />
-                    </div><div class="form-group col-md-4">
-                      <label for="reportToDate">To</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="reportToDate"
-                        name="reportToDate"
-                      />
-                    </div>
-                  </div>
-                  <div class="row selectVendor" style="display: none;" >
-                    <h6>Choose the Vendor Firm Name :</h6>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <label
-                          class="input-group-text"
-                          for="vendorFirmName"
-                        >Vendor Firm</label>
-                      </div>
-                      <select
-                        class="custom-select"
-                        id="vendorFirmName"
-                        name="vendorFirmName"
-                      >
-                        <option value="" selected></option>
-                      </select>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-success">Generate Report</button>
-                </form>
+                </div>
+                <button type="submit" class="btn btn-success" onclick="generateReportButtonAction()">Generate Report</button>
               </div>
             </div>
           </div>

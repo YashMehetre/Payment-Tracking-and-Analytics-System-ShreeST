@@ -34,14 +34,14 @@
 <!-- Ribbon -->
 <div class="container-fluid bg-primary text-white p-2 my-1">
     <div class="row">
-        <div class="col-md-6" id="reportDetails">
+        <div class="col-md-6" id="reportDetails" style="font-weight: bold;">
             Report Type: {{title}} <br>
-            {{!-- Vendor Firm: {{vendorFirmName}} <br> --}}
+            Vendor Firm: {{vendorFirmName}} <br>
             From: {{fromDate}} &nbsp;&nbsp;&nbsp;&nbsp; To: {{toDate}}
         </div>
         <div class="col-md-6 d-flex justify-content-end align-items-center">
 <button type="button" class="btn btn-success mr-2" id="exportPDFButton" onclick="exportToPDF()">Export as PDF</button>
-<button type="button" class="btn btn-success" id="exportXLSButton">Export as XLS</button>
+<button type="button" class="btn btn-success" id="exportXLSButton" onclick="exportToXLSX()">Export as XLSX</button>
         </div>
     </div>
 </div>
@@ -55,8 +55,8 @@
 
 <!-- Responsive Table -->
 <div class="container-fluid p-2" id="data-table">
-    <div class="table-responsive" >
-        <table class="table table-bordered table-light"  >
+    <div class="table-responsive" id="table-responsive">
+        <table class="table table-bordered table-light" id="table" >
             <thead class="thead-light">
                 <tr>
                     <th>Sr. No.</th>
@@ -68,6 +68,7 @@
                     <th>Total Weight</th>
                     <th>Market Amount (Rs.)</th>
                     <th>Party Amount (Rs.)</th>
+                    <th>Remarks</th>
                 </tr>
             </thead>
             <tbody id="data-table-table" >
@@ -76,13 +77,14 @@
                 
             </tbody>
             <tfoot>
-                <tr id="sumRow" style="display: none;" class="table-success">
+                <tr id="sumRow" style="display: none; font-weight:bold" class="table-success">
                     <td colspan="4">Total :</td>
                     <td id="sumBoxes"></td>
                     <td id="sumBoxWt"></td>
                     <td id="sumTotalWeight"></td>
                     <td id="sumMarketAmount"></td>
                     <td id="sumPartyAmount"></td>
+                    <td id="remarks"></td>
                 </tr>
             </tfoot>
         </table>
@@ -95,12 +97,10 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 
 <!-- Your custom script (export1.js) -->
-<script src="js/export1.js"></script>
-
-
-
+<script src="js/showReport.js"></script>
 
 </body>
 </html>
