@@ -5,6 +5,8 @@ window.onload = () => {
     searchVendorFirm();
   };
 document.getElementById("submitDetailsBtn").addEventListener("click", addVendorDetails);
+document.getElementById("vendorFirm").focus();
+
 // Add Vendor Details
 async function addVendorDetails(){
     const vendorFirm = document.getElementById("vendorFirm").value;
@@ -115,6 +117,7 @@ async function editVendorDetails(vendorId){
     document.getElementById("vendorAddress").value = data[0].vendorAddress;
     document.getElementById("vendorContact2").value = data[0].vendorContact2;
     document.getElementById("vendorEmail").value = data[0].vendorEmail;
+    document.getElementById("vendorFirm").focus();
     document.getElementById("updateDetailsTitle").style.display = "block";
     document.getElementById("submitDetailsBtn").style.display = "none";
     document.getElementById("updateDetailsBtn").style.display = "block";
