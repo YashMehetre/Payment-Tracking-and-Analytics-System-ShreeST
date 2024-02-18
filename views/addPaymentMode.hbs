@@ -301,14 +301,10 @@
           <div class="row">
             <div class="col-md-12">
               <div class="white-box">
-                {{#if status}}
-        <h6 style="color: rgb(11, 196, 11);">Payment Mode Added Succesfully</h6>
-        {{/if}}
-                <form action="/addPaymentModeData" method="post">
-
+                <h5 style="display: none; color:rgb(51, 164, 51)" id="updateDetailsTitle">Update Payment Mode</h5>
                   <div class="form-row">
                     <div class="form-group col-md-6">
-                  <label for="paymentModeName">New Payment Mode Name </label>
+                  <label for="paymentModeName">Payment Mode Name </label>
                   <input
                     type="text"
                     class="form-control"
@@ -340,19 +336,21 @@
                         class="form-control"
                         aria-label="With textarea"
                         name="paymentModeDetails"
+                        id="paymentModeDetails"
                       ></textarea>
                     </div>
                     </div>
 
                   </div>
-
-                  <button type="submit" class="btn btn-success">Add Payment Mode</button>
+  
+            <button type="submit" class="btn btn-success" style="display: none;" id="updateDetailsBtn" >Update Details</button>
+                  <button type="submit" class="btn btn-success"  style="" onclick="addPaymentMode()" id="addDetailsBtn">Add Payment Mode</button>
                   &nbsp; &nbsp;
-                  <button class="btn btn-primary">Cancel</button>
-                </form>
+                  <button class="btn btn-danger" id="cancelAction" onclick="cancelUpdateDetails()">Cancel</button>
+  
                 <br />
                 <br />
-                <button class="btn btn-danger" onclick="scrollToTable()">Delete an Existing
+                <button class="btn btn-primary" onclick="scrollToTable()">Edit/Delete an Existing
                   Payment Mode
                 </button>
 

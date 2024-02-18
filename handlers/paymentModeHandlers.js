@@ -1,22 +1,20 @@
 const pool = require('../modules/database');
 
 const handleAddPaymentModeData = async(req,res) =>{
-    const data = req.body;
-    let sql = `INSERT INTO paymentmode(paymentModeName, paymentModeDetails, paymentModeStatus) VALUES ("${data.paymentModeName}","${data.paymentModeDetails}","${data.paymentModeStatus}")`;
+    const {paymentModeName, paymentModeStatus, paymentModeDetails} = req.body;
+    let sql = `INSERT INTO paymentmode (paymentModeName, paymentModeStatus, paymentModeDetails) VALUES (?,?,?)`;
     try {
-        await pool.promise().execute(sql,[
-            data.paymentModeName,
-            data.paymentModeDetails,
-            data.paymentModeStatus
-        ])
-        res.render('addPaymentMode',{status:1});
+        const [result] = await pool.promise().execute(sql,[paymentModeName, paymentModeStatus, paymentModeDetails]);
+        if(result.affectedRows === 1){
+            res.json({status: 1, message: "Payment Mode Added Successfully"});
+        }else{
+            res.json({status: 0, message: "Failed to Add Payment Mode"});
+        }
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal Server Error");
     }
-    
 }
-
 async function handleFetchPaymentModes(req,res){
     let sql = `SELECT * FROM paymentmode`;
     try {
@@ -27,5 +25,46 @@ async function handleFetchPaymentModes(req,res){
         res.status(500).send("Internal Server Error");
     }
 }
+async function handleDeletePaymentMode(req,res){
+    const {paymentModeId} = req.body;
+    let sql = `DELETE FROM paymentmode WHERE paymentModeId = ?`;
+    try {
+        const [result] = await pool.promise().execute(sql,[paymentModeId]);
+        if(result.affectedRows === 1){
+            res.json({status: 1, message: "Payment Mode Deleted Successfully"});
+        }else{
+            res.json({status: 0, message: "Failed to Delete Payment Mode"});
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+async function handleUpdatePaymentMode(req,res){
+    const {paymentModeId, paymentModeName, paymentModeStatus, paymentModeDetails} = req.body;
+    let sql = `UPDATE paymentmode SET paymentModeName = ?, paymentModeStatus = ?, paymentModeDetails = ? WHERE paymentModeId = ?`;
+    try {
+        const [result] = await pool.promise().execute(sql,[paymentModeName, paymentModeStatus, paymentModeDetails, paymentModeId]);
+        if(result.affectedRows === 1){
+            res.json({status: 1, message: "Payment Mode Updated Successfully"});
+        }else{
+            res.json({status: 0, message: "Failed to Update Payment Mode"});
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+async function handleGetPaymentModeDetails(req,res){
+    const {paymentModeId} = req.body;
+    let sql = `SELECT * FROM paymentmode WHERE paymentModeId = ?`;
+    try {
+        const [result] = await pool.promise().execute(sql,[paymentModeId]);
+        res.json(result[0]);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
 
-module.exports = {handleAddPaymentModeData, handleFetchPaymentModes};
+module.exports = {handleAddPaymentModeData, handleFetchPaymentModes,handleDeletePaymentMode,handleUpdatePaymentMode,handleGetPaymentModeDetails};

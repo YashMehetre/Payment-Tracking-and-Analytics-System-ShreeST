@@ -1,5 +1,4 @@
-const { json } = require("express");
-const pool = require("../modules/database");
+    const pool = require("../modules/database");
 
 async function generateReportHandler(req, res) {
  let reportType = req.query.reportType;
@@ -55,18 +54,5 @@ const getVendorId = async (vendorFirm) => {
     throw error;
   }
 };
-// async function fetchLoadingReportHandler(req, res) {
-//     let sql = `SELECT * FROM billdetails`;
-//     try {
-//       const [result] = await pool
-//         .promise()
-//         .execute(sql);
-//       // console.log(result);
-//       res.json(result);
-//     } catch (error) {
-//       console.log(error);
-//       res.status(500).send("Internal Server Error");
-//     }
-//   }
 
 module.exports = { generateReportHandler };

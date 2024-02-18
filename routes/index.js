@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-const { handleFetchVendors, handleAddVendors } = require('../handlers/vendorHandlers');
-const { handleFetchVendorsForSelect, handleAddBillData } = require('../handlers/billHandlers');
-const {handleAddPaymentModeData, handleFetchPaymentModes} = require('../handlers/paymentModeHandlers');
+const { handleFetchVendors, handleAddVendors, handleGetVendorDetails,handleUpdateVendorDetails,handleDeleteVendorDetails} = require('../handlers/vendorHandlers');
+const { handleFetchVendorsForSelect, handleAddBillData, handleGetLastBillNum} = require('../handlers/billHandlers');
+const {handleAddPaymentModeData, handleFetchPaymentModes,handleDeletePaymentMode,handleUpdatePaymentMode,handleGetPaymentModeDetails} = require('../handlers/paymentModeHandlers');
 const {addPaymentDataHandler,handleFetchPaymentModesForSelect} = require('../handlers/addPaymentHandlers');
 const {generateReportHandler} = require('../handlers/exportHandlers');
 
@@ -60,15 +60,23 @@ router.get('/export', function(req, res, next) {
 // Vendors Module
 router.get('/fetchVendors', handleFetchVendors);
 router.post('/addVendorData', handleAddVendors);
+router.post('/deleteVendorDetails', handleDeleteVendorDetails);
+router.post('/getVendorDetails', handleGetVendorDetails);
+router.post('/updateVendorDetails', handleUpdateVendorDetails);
 
 
 //Add Bill Module
 router.get('/fetchVendorsForSelect',handleFetchVendorsForSelect);
 router.post('/addBillData',handleAddBillData);
+router.get('/getLastBillNum',handleGetLastBillNum);
+
 
 // Add Payment Mode Module
 router.get('/fetchPaymentModes',handleFetchPaymentModes);
 router.post('/addPaymentModeData',handleAddPaymentModeData);
+router.post('/deletePaymentMode',handleDeletePaymentMode);
+router.post('/updatePaymentMode',handleUpdatePaymentMode);
+router.post('/getPaymentModeDetails',handleGetPaymentModeDetails);
 
 // Add Payment Module
 router.post('/addPaymentData',addPaymentDataHandler);
