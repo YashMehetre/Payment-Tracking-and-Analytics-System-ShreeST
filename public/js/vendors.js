@@ -15,9 +15,12 @@ async function addVendorDetails(){
     const goodsType = document.getElementById("goodsType").value;
     const vendorContact1 = document.getElementById("vendorContact1").value;
     const vendorAddress = document.getElementById("vendorAddress").value;
-    const vendorContact2 = document.getElementById("vendorContact2").value;
+    const vendorContact2 = document.getElementById("vendorContact2").value ;
     const vendorEmail = document.getElementById("vendorEmail").value;
-
+    if(vendorFirm === "" || vendorName === "" || goodsType === "" || vendorContact1 === ""){
+        alert("Please fill all the details");
+        return;
+    }
     const response = await fetch('/addVendorData', {
         method: 'POST',
         headers: {

@@ -66,5 +66,15 @@ async function handleGetPaymentModeDetails(req,res){
         res.status(500).send("Internal Server Error");
     }
 }
+async function handlePaymentModeIdConversion(req,res){
+    let sql = `SELECT paymentModeId, paymentModeName FROM paymentmode`;
+    try {
+        const [result] = await pool.promise().execute(sql);
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
 
-module.exports = {handleAddPaymentModeData, handleFetchPaymentModes,handleDeletePaymentMode,handleUpdatePaymentMode,handleGetPaymentModeDetails};
+module.exports = {handlePaymentModeIdConversion,handleAddPaymentModeData, handleFetchPaymentModes,handleDeletePaymentMode,handleUpdatePaymentMode,handleGetPaymentModeDetails};

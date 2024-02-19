@@ -60,4 +60,15 @@ async function handleDeleteVendorDetails(req, res) {
         res.status(500).send("Internal Server Error");
     }
 }
-module.exports = { handleFetchVendors, handleAddVendors, handleGetVendorDetails, handleUpdateVendorDetails,handleDeleteVendorDetails };
+async function handleVendorIdConversion(req, res) {
+    let sql = `SELECT vendorId, vendorFirm FROM vendordetails`;
+    try {
+        const [result] = await pool.promise().query(sql);
+        res.json(result);
+        // console.log(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+module.exports = {handleVendorIdConversion, handleFetchVendors, handleAddVendors, handleGetVendorDetails, handleUpdateVendorDetails,handleDeleteVendorDetails };

@@ -295,9 +295,9 @@
         <!-- ============================================================== -->
         <!-- Container fluid  -->
         <!-- ============================================================== -->
-          {{#if status}}
+          {{!-- {{#if status}}
         <h6 style="color: rgb(11, 196, 11);">Payment Added Succesfully</h6>
-        {{/if}}
+        {{/if}} --}}
         <div class="container-fluid">
           <!-- ============================================================== -->
           <!-- Start Page Content -->
@@ -306,21 +306,31 @@
             <div class="col-md-12">
               <div class="white-box">
 
-                <form action="/addPaymentData" method="post">
                  <h6>Choose the Vendor Firm Name :</h6>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" style="" id="vendorFirmNameDiv">
                   <div class="input-group-prepend">
                     <label
                       class="input-group-text"
                       for="vendorFirmName"
-                    >Vendor Firm</label>
+                    >Vendor Firm <span style="color: red;">*</span></label>
                   </div>
-                  <select class="custom-select" id="vendorFirmName" name="vendorFirmName" required>
-                    <option value="" selected></option>
+                  <select class="custom-select" id="vendorFirmName" name="vendorFirmName" >
+                    <option value="">Choose..</option>
                   </select>
                 </div>
+                {{!-- <div class="input-group mb-3" style="display: none;" id="vendorFirmNameUpdateDiv">
+                  <div class="input-group-prepend">
+                    <label
+                      class="input-group-text"
+                      for="vendorFirmName"
+                    >Vendor Firm <span style="color: red;">*</span></label>
+                  </div>
+                  <select class="custom-select" id="vendorFirmNameUpdate" name="vendorFirmNameUpdate" >
+                    <option value="">Choose....</option>
+                  </select>
+                </div> --}}
                 <div class="form-row"><div class="form-group col-md-4">
-                      <label for="paymentDate">Date</label>
+                      <label for="paymentDate">Date <span style="color: red;">*</span></label>
                       <input
                         type="date"
                         class="form-control"
@@ -328,7 +338,7 @@
                         name="paymentDate"
                       />
                     </div><div class="form-group col-md-8">
-                      <label for="paymentModeName">Payment Mode</label>
+                      <label for="paymentModeName">Payment Mode <span style="color: red;">*</span></label>
                       <select
                         id="paymentModeName"
                         name="paymentModeName"
@@ -342,7 +352,7 @@
                   <div class="form-row">
               
                     <div class="form-group col-md-4">
-                      <label for="paymentReceivedAmt">Party Amount (Rs.)</label>
+                      <label for="paymentReceivedAmt">Party Amount (Rs.) <span style="color: red;">*</span></label>
                       <input
                         type="number" step="0.01"
                         class="form-control"
@@ -357,7 +367,7 @@
                     <div class="form-group col-md-12">
                     <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text">Extra Details (Optional)</span>
+                        <span class="input-group-text" id="paymentMoreDetails">Extra Details (Optional)</span>
                       </div>
                       <textarea
                         class="form-control"
@@ -367,16 +377,78 @@
                     </div>
                     </div>
 
-                  <button type="submit" class="btn btn-success">Add Payment 1</button>
+                  <button type="button" class="btn btn-success" id="addPaymentData">Add Payment</button>
                   &nbsp; &nbsp;
-                  <button class="btn btn-primary">Cancel</button>
-                </form>
-                <br />
-                <br />
-                {{!-- <button  class="btn btn-danger">Delete an Existing
-                  Payment
-                </button> --}}
-
+                  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel()">Cancel</button>
+              </div>
+              <br>
+              <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <button class="btn btn-danger" onclick="scrollToTable()">Delete an Existing
+                  Payment Mode</button>
+                    </div>
+                    </div>
+            
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="white-box">
+                <h3 class="box-title">Search Payment Details</h3>
+                  <div class="form-row">
+                    
+                    <div class="form-group col-md-4">
+                      <label for="paymentDate">Date <span style="color: red;">*</span></label>
+                      {{!-- <label for="paymentDate">From Date</label> --}}
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="paymentSearchFromDate"
+                        name="paymentSearchFromDate"
+                      />
+                    </div> 
+                    {{!-- <div class="form-group col-md-3">
+                      <label for="paymentDate">To Date</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="paymentSearchToDate"
+                        name="paymentSearchToDate"
+                      />
+                    </div> --}}
+                    <div class="form-group col-md-8">
+                      <label for="paymentModeName">Vendor Firm Name <span style="color: red;">*</span></label>
+                      <select
+                        id="vendorFirmNameSearch"
+                        name="vendorFirmNameSearch"
+                        class="form-control"
+                      >
+                      <option value="">Choose...</option>
+                      
+                      </select>
+                    </div>
+                    <button type="button" class="btn btn-info" id="searchPaymentData" onclick="searchPaymentData()">Search</button>
+                    
+                    </div>
+                <h3 class="box-title"><br>Payment Details (Recent)</h3>
+                {{!-- <p class="text-muted">Add class <code>.table</code></p> --}}
+                <div class="table-responsive">
+                  <table class="table text-nowrap ">
+                    <thead>
+                      <tr>
+                        <th class="border-top-0">Payment Id</th>
+                        <th class="border-top-0">Vendor Firm</th>
+                        <th class="border-top-0">Date</th>
+                        <th class="border-top-0">Pt. Mode</th>
+                        <th class="border-top-0">Party Amt.</th>
+                        <th class="border-top-0">Details</th>
+                        <th class="border-top-0">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="paymentDetails">
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
