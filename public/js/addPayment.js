@@ -99,7 +99,7 @@ async function searchPaymentData(){
     // let toDate = document.getElementById("paymentSearchToDate").value;
     let vendorFirmNameSearch = document.getElementById("vendorFirmNameSearch").value;
     if (fromDate === "" || vendorFirmNameSearch === ""){
-        alert("Please Enter Date and Vendor Name");
+        alert("Please Enter Date and Choose Vendor Firm");
     }else{
         let data = {
             fromDate: fromDate,
