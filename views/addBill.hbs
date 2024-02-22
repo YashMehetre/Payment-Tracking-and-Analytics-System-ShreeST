@@ -41,19 +41,9 @@
       crossorigin="anonymous"
     />
     <style>
-        .logo{
-            height: 60px; 
-            width: 60px; 
-            margin-left:60px; 
-        }
-        @media only screen and (max-width: 765px) {
-  .logo{
-            height: 60px; 
-            width: 60px; 
-            margin-left:0px; 
-
-        }
-}
+      .logo{ height: 60px; width: 60px; margin-left:60px; } @media only screen
+      and (max-width: 765px) { .logo{ height: 60px; width: 60px;
+      margin-left:0px; } }
     </style>
   </head>
 
@@ -92,14 +82,18 @@
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo.png" alt="homepage" class="logo" />
+                <img
+                  src="plugins/images/logo.png"
+                  alt="homepage"
+                  class="logo"
+                />
               </b>
               <!--End Logo icon -->
               <!-- Logo text -->
-              {{!-- <span class="logo-text"> --}}
-                <!-- dark Logo text -->
-                {{!-- <img src="plugins/images/logo-text.png" alt="homepage" /> --}}
-              {{!-- </span> --}}
+              {{! <span class="logo-text"> }}
+              <!-- dark Logo text -->
+              {{! <img src="plugins/images/logo-text.png" alt="homepage" /> }}
+              {{! </span> }}
             </a>
             <!-- ============================================================== -->
             <!-- End Logo -->
@@ -120,7 +114,7 @@
             id="navbarSupportedContent"
             data-navbarbg="skin5"
           >
-                    &nbsp;&nbsp;&nbsp;<h5 style="color: white;">Add Bill</h5>
+            &nbsp;&nbsp;&nbsp;<h5 style="color: white;">Add Bill</h5>
 
             <ul class="navbar-nav d-none d-md-block d-lg-none">
               <li class="nav-item">
@@ -183,26 +177,36 @@
             <ul id="sidebarnav">
               <!-- User Profile-->
               <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li> <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/export"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Export Data</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addBill"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Add Bill</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Dashboard</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/export"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Export Data</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/addBill"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Add Bill</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPayment"
@@ -212,36 +216,42 @@
                   <span class="hide-menu">Add Payment</span>
                 </a>
               </li>
-                        {{!-- <li class="sidebar-item pt-2">
+              {{! <li class="sidebar-item pt-2">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/viewData"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">View Data</span>
                             </a>
-                        </li> --}}
-                        {{!-- <li class="sidebar-item pt-2">
+                        </li> }}
+              {{! <li class="sidebar-item pt-2">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/editData"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Edit Data</span>
                             </a>
-                        </li> --}}
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/analytics"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Analytics</span>
-                            </a>
-                        </li> 
-                        
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addVendor"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Vendors</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item pt-2">
+                        </li> }}
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/analytics"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Analytics</span>
+                </a>
+              </li>
+
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/addVendor"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Vendors</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPaymentMode"
@@ -299,121 +309,134 @@
           <!-- ============================================================== -->
           <!-- Start Page Content -->
           <!-- ============================================================== -->
-         {{#if status}}
-        <h6 style="color: rgb(11, 196, 11);">Bill Added Succesfully</h6>
-        {{/if}}
-         
+
           <div class="row">
             <div class="col-md-12">
               <div class="white-box">
+                <h5
+                  style="display: none; color:rgb(51, 164, 51)"
+                  id="updateDetailsTitle"
+                >Update Bill Details</h5>
 
-                <form action="/addBillData" method="post">
-
-                 <h6>Choose the Vendor Firm Name :</h6>
+                <h6>Choose the Vendor Firm Name :</h6>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <label
-                      class="input-group-text"
-                      for="vendorFirmName"
-                    >Vendor Firm</label>
+                    <label class="input-group-text" for="vendorFirmName">Vendor
+                      Firm
+                      <span style="color: red;">*</span></label>
                   </div>
-                  <select class="custom-select" id="vendorFirmName" name="vendorFirmName" required>
-                    <option value="" selected></option>
+                  <select
+                    class="custom-select"
+                    id="vendorFirmName"
+                    name="vendorFirmName"
+                    required
+                  >
+                    <option value="">Choose..</option>
                   </select>
                 </div>
 
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="billNum">Bill No.</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="billNum"
-                        name="billNum"
-                        placeholder="Bill Number"
-                        value="10"
-                        disabled
-                      />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="billDate">Date</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="billDate"
-                        name="billDate"
-                      />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="billGoodsType">Goods Type</label>
-                      <select
-                        id="billGoodsType"
-                        name="billGoodsType"
-                        class="form-control"
-                      >
-                        <option selected>Pomegranate</option>
-                        <option>Onion</option>
-                      </select>
-                    </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="billNum">Bill No.
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="billNum"
+                      name="billNum"
+                      placeholder="Bill Number"
+                      value="10"
+                      disabled
+                    />
                   </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="billTotalBoxes">Total Boxes</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="billTotalBoxes"
-                        name="billTotalBoxes"
-                        placeholder="Total Boxes"
-                      />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="billWeightPerBox">Weight (kg)</label>
-                      <input
-                        type="float"
-                        class="form-control"
-                        id="billWeightPerBox"
-                        name="billWeightPerBox"
-                        placeholder="Weight (kg)"
-                      />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="billTotalWeight">Total Weight (kg)</label>
-                      <input
-                        type="float"
-                        class="form-control"
-                        id="billTotalWeight"
-                        name="billTotalWeight"
-                        placeholder="Total Weight (kg)"
-                      />
-                    </div>
+                  <div class="form-group col-md-4">
+                    <label for="billDate">Date
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="billDate"
+                      name="billDate"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="billGoodsType">Goods Type
+                      <span style="color: red;">*</span></label>
+                    <select
+                      id="billGoodsType"
+                      name="billGoodsType"
+                      class="form-control"
+                    >
+                      <option selected>Pomegranate</option>
+                      <option>Onion</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="billTotalBoxes">Total Boxes
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="billTotalBoxes"
+                      name="billTotalBoxes"
+                      placeholder="Total Boxes"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="billWeightPerBox">Weight (kg)
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="float"
+                      class="form-control"
+                      id="billWeightPerBox"
+                      name="billWeightPerBox"
+                      placeholder="kg per box"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="billTotalWeight">Total Weight (kg)
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="float"
+                      class="form-control"
+                      id="billTotalWeight"
+                      name="billTotalWeight"
+                      placeholder="kg"
+                    />
+                  </div>
 
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="billMarketAmount">Market Amount(<span
+                      >&#8377;</span>)
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="float"
+                      class="form-control"
+                      id="billMarketAmount"
+                      name="billMarketAmount"
+                      placeholder="&#8377"
+                    />
                   </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="billMarketAmount">Market Amount (Rs.)</label>
-                      <input
-                        type="float"
-                        class="form-control"
-                        id="billMarketAmount"
-                        name="billMarketAmount"
-                        placeholder="Market Amount (Rs.)"
-                      />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="billPaymentAmount">Party Payment Amount (Rs.)</label>
-                      <input
-                        type="float"
-                        class="form-control"
-                        id="billPaymentAmount"
-                        name="billPaymentAmount"
-                        placeholder="Amount (Rs.)"
-                      />
-                    </div>
+                  <div class="form-group col-md-4">
+                    <label for="billPaymentAmount">Party Payment Amount(<span
+                      >&#8377;</span>)
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="float"
+                      class="form-control"
+                      id="billPaymentAmount"
+                      name="billPaymentAmount"
+                      placeholder="&#8377"
+                    />
+                  </div>
 
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Extra Details (Optional)</span>
@@ -422,22 +445,108 @@
                         class="form-control"
                         aria-label="With textarea"
                         name="billMoreDetails"
+                        id="billMoreDetails"
                       ></textarea>
                     </div>
-                    </div>
-
                   </div>
 
-                  <button type="submit" class="btn btn-success">Add Bill</button>
-                  &nbsp; &nbsp;
-                  <button class="btn btn-primary">Cancel</button>
-                </form>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  id="addBillData"
+                >Add Bill Data</button>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  id="updateBillData"
+                  style="display: none;"
+                >Update Bill Details</button>
+                &nbsp; &nbsp;
+                <button
+                  class="btn btn-primary"
+                  id="cancelAction"
+                >Cancel</button>
                 <br />
                 <br />
-                <button type="submit" class="btn btn-danger">Delete an Existing
+                <button type="button" class="btn btn-info" onclick="scrollToTable()">Edit/Delete an Existing
                   Bill
                 </button>
 
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="white-box">
+                <h3 class="box-title">Search Bill Details</h3>
+                <div class="form-row">
+
+                  <div class="form-group col-md-4">
+                    <label for="billSearchDate">Date
+                      <span style="color: red;">*</span></label>
+                    {{! <label for="paymentDate">From Date</label> }}
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="billSearchDate"
+                      name="billSearchDate"
+                    />
+                  </div>
+                  {{! <div class="form-group col-md-3">
+                      <label for="paymentDate">To Date</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="paymentSearchToDate"
+                        name="paymentSearchToDate"
+                      />
+                    </div> }}
+                  <div class="form-group col-md-8">
+                    <label for="paymentModeName">Vendor Firm Name
+                      <span style="color: red;">*</span></label>
+                    <select
+                      id="vendorFirmNameSearch"
+                      name="vendorFirmNameSearch"
+                      class="form-control"
+                    >
+                      <option value="">Choose...</option>
+
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-info"
+                    id="searchBillData"
+                  >Search</button>
+
+                </div>
+                <h3 class="box-title"><br />Bill Details (Recent)</h3>
+                {{! <p class="text-muted">Add class <code>.table</code></p> }}
+                <div class="table-responsive">
+                  <table class="table text-nowrap">
+                    <thead>
+                      <tr>
+                        <th class="border-top-0">Bill No.</th>
+                        <th class="border-top-0">Vendor Firm</th>
+                        <th class="border-top-0">Date</th>
+                        <th class="border-top-0">Goods Type</th>
+                        <th class="border-top-0">Total Boxes</th>
+                        <th class="border-top-0">Weight (kg)</th>
+                        <th class="border-top-0">Total Weight (kg)</th>
+                        <th class="border-top-0">Market Amount (<span
+                          >&#8377;</span>)</th>
+                        <th class="border-top-0">Party Amount (<span
+                          >&#8377;</span>)</th>
+                        <th class="border-top-0">Details</th>
+                        <th class="border-top-0">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="billDetails">
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
