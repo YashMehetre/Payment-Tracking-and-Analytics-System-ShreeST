@@ -15,7 +15,7 @@ const {handleAddPaymentData,handleFetchPaymentModesForSelect,handleFetchPaymentD
 const {generateReportHandler} = require('../handlers/exportHandlers');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/dashboard', function(req, res, next) {
   res.render('dashboard', { title: 'Dashboard' });
 });
 router.get('/addVendor', function(req, res, next) {

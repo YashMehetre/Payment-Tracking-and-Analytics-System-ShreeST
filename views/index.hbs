@@ -1,2 +1,26 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<body>
+<div class="login-container">
+    <div class="login-box">
+        <div class="logo">
+            <img src="plugins/images/logo.png" alt="Company Logo">
+        </div>
+        <h1>Shree Sai Trading Company</h1>
+        <h3>Admin Login</h3>
+        <div>
+            <input type="text" id="username" name="username" placeholder="Username" required><br>
+            <input type="password" id="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Login" onclick="login()">
+        </div>
+    </div>
+</div>
+<script src="js/login.js"></script>
+</body>
+</html>
