@@ -41,8 +41,8 @@ async function generateReportHandler(req, res) {
         .promise()
         .execute(sql2, [vendorId, fromDate, toDate]);
       let result = result1.concat(result2);
-      result.sort((a, b) => (a.date > b.date ? -1 : 1));
-      // console.log(result);
+      result.sort((a, b) => new Date(a.date) - new Date(b.date));
+      console.log(result);
       res.json(result);
   }
   catch (error) {
