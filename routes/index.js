@@ -111,5 +111,10 @@ router.get('/showReport', function(req, res){
   toDate : `${req.query.toDate}`,
   vendorFirmName : `${req.query.reportType==1?'All':req.query.vendorFirmName}`});
 });
+router.get('/showReport3', function(req, res){
+  res.render('showReport3', { title: `${req.query.reportType==2?'Vendorwise Loading Report':req.query.reportType==3?'Loading Vendor Deposit/Pending Amount Report':'Loading Report'}`,fromDate :`${req.query.fromDate}`,
+  toDate : `${req.query.toDate}`,
+  vendorFirmName : `${req.query.reportType==1?'All':req.query.vendorFirmName}`});
+});
 
 module.exports = router;

@@ -29,7 +29,7 @@ app.get('/', function(req, res, next) {
 app.post('/login', authenticate, function(req, res, next) {
   res.redirect('/dashboard');
 });
-app.use(authenticate);
+// app.use(authenticate);
 
 // Routes setup
 
