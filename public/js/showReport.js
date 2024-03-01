@@ -1,87 +1,82 @@
-// Used to display the report in the frontend
-
 document.addEventListener("DOMContentLoaded", () => {
     showLoadingReport();
     setTimeout(() => loadSum(), 1000);
 });
 
 function loadSum() {
-    // Get all rows in the table body
     const tableBody = document.querySelector("tbody");
     const rows = tableBody.getElementsByTagName("tr");
 
-    // Initialize sum variables
     let sumBoxes = 0;
-    let sumBoxWt = 0;
     let sumTotalWeight = 0;
     let sumMarketAmount = 0;
     let sumPartyAmount = 0;
+    let sumProfitLoss = 0;
 
-    // Loop through each row and sum the values
     for (let i = 0; i < rows.length; i++) { // Exclude the last row (sum row)
         const cells = rows[i].getElementsByTagName("td");
-        sumBoxes += parseInt(cells[4].innerText) || 0;
-        sumBoxWt += parseInt(cells[5].innerText) || 0;
-        sumTotalWeight += parseInt(cells[6].innerText) || 0;
-        sumMarketAmount += parseInt(cells[7].innerText) || 0;
-        sumPartyAmount += parseInt(cells[8].innerText) || 0;
+        sumBoxes += parseInt(cells[3].innerText) || 0; // Assuming the index of total boxes is 3
+        sumTotalWeight += parseFloat(cells[4].innerText.replace(" kg", "")) || 0; // Assuming the index of total weight is 4
+        sumMarketAmount += parseFloat(cells[5].innerText.replace(/[^0-9.-]+/g, "")) || 0; // Assuming the index of market amount is 6
+        sumPartyAmount += parseFloat(cells[6].innerText.replace(/[^0-9.-]+/g, "")) || 0; // Assuming the index of party amount is 7
+        sumProfitLoss += parseFloat(cells[7].innerText.replace(/[^0-9.-]+/g, "")) || 0; // Assuming the index of profit loss is 8
     }
 
-    // Update the sum row with the calculated values
-    document.getElementById("sumBoxes").innerText = sumBoxes;
-    document.getElementById("sumBoxWt").innerText = sumBoxWt + " kg";
-    document.getElementById("sumTotalWeight").innerText = sumTotalWeight + " kg";
-    document.getElementById("sumMarketAmount").innerText = sumMarketAmount;
-    document.getElementById("sumPartyAmount").innerText = sumPartyAmount;
+    document.getElementById("sumBoxes").innerText = sumBoxes.toLocaleString('en-IN', { useGrouping: true });
+    document.getElementById("sumTotalWeight").innerText = sumTotalWeight.toLocaleString('en-IN', { useGrouping: true }) + " kg";
+    document.getElementById("sumMarketAmount").innerText = sumMarketAmount.toLocaleString('en-IN', { useGrouping: true });
+    document.getElementById("sumPartyAmount").innerText = sumPartyAmount.toLocaleString('en-IN', { useGrouping: true });
+    document.getElementById("sumProfitLoss").innerText = sumProfitLoss.toLocaleString('en-IN', { useGrouping: true });
 
-    // Display the sum row
     document.getElementById("sumRow").style.display = "table-row";
-    searchVendorFirm();
 }
-const generateReportHandler = async() =>{
+
+
+const generateReportHandler = async () => {
     urlParams = new URLSearchParams(window.location.search);
     const reportType = urlParams.get('reportType');
-    console.log(reportType);
     const vendorFirmName = urlParams.get('vendorFirmName') || "";
-    console.log(vendorFirmName);
     const fromDate = urlParams.get('fromDate');
-    console.log(fromDate);
     const toDate = urlParams.get('toDate');
-    if (reportType == 1) {
-        url = `/generateReport?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
-    } else {
+
+    let url = `/generateReport?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
+    if (reportType != 1) {
         url = `/generateReport?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
     }
+
     const response = await fetch(url);
     const data = await response.json();
     return data;
 }
 
-async function showLoadingReport(){
-    const data = await generateReportHandler();
-    // console.log(data);
-    data.forEach(e => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<tr>
-        <td>${e.billNum}</td>
-        <td>${e.billDate}</td>
-        <td>${e.billNum}</td>
-        <td>${e.vendorId}</td>
-        <td>${e.billTotalBoxes}</td>
-        <td>${e.billWeightPerBox}</td>
-        <td>${e.billTotalWeight}</td>
-        <td>${e.billMarketAmount}</td>
-        <td>${e.billPaymentAmount}</td>
-        <td>${e.billMoreDetails}</td>
-        </tr>`
-        // console.log(row);
-        document.getElementById("data-table-table").appendChild(row);
-    });
-   
+async function showLoadingReport() {
+    try {
+        const data = await generateReportHandler();
+        data.forEach(e => {
+            let billMarketAmount = parseFloat(e.billMarketAmount) || 0;
+            let billPaymentAmount = parseFloat(e.billPaymentAmount) || 0;
+            let profitLoss = billMarketAmount - billPaymentAmount;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `<tr>
+                <td>${e.billNum}</td>
+                <td>${e.billDate}</td>
+                <td>${e.vendorFirm}</td>
+                <td>${e.billTotalBoxes}</td>
+                <td>${e.billTotalWeight}</td>
+                <td>${billMarketAmount.toLocaleString('en-IN', { useGrouping: true })}</td>
+                <td>${billPaymentAmount.toLocaleString('en-IN', { useGrouping: true })}</td>
+                <td class="${profitLoss >= 0 ? 'text-success' : 'text-danger'}">${profitLoss.toLocaleString('en-IN', { useGrouping: true })}</td>
+                <td>${e.billMoreDetails}</td>
+                </tr>`;
+            document.getElementById("data-table-table").appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error loading report:", error);
+    }
 }
 
 
-// Search functionality function
 function searchVendorFirm() {
     const searchInput = document.getElementById("searchInput");
     const table = document.getElementById("table");
@@ -98,10 +93,10 @@ function searchVendorFirm() {
         });
     });
 }
+
 function exportToPDF() {
     const tableContainer = document.getElementById('data-table');
     const reportDetails = document.getElementById('reportDetails');
-    console.log(tableContainer);
     let filename = `${Date.now()}`;
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
@@ -137,6 +132,7 @@ function exportToPDF() {
         document.body.removeChild(iframe);
     }, 1000);
 }
+
 function exportToXLSX() {
     const tableContainer = document.getElementById('table-responsive');
     const date = new Date();

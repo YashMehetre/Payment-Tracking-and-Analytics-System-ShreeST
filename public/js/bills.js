@@ -122,8 +122,8 @@ async function showLastBillData() {
         <td>${e.billTotalBoxes}</td>
         <td>${e.billWeightPerBox}</td>
         <td>${e.billTotalWeight}</td>
-        <td style="color: #de0223; font-weight:bold;">${billMarketAmount}</td>
-        <td style="color: #de0223; font-weight:bold;">${billPaymentAmount}</td>
+        <td style="font-weight:bold;">${billMarketAmount}</td>
+        <td style="font-weight:bold;">${billPaymentAmount}</td>
         <td>${e.billMoreDetails}</td>
         <td>
         <button type="" class="btn btn-primary" onclick = editBillDetails(${e.billNum})>Edit</button>
@@ -155,8 +155,8 @@ async function searchBillData() {
             <td>${e.billTotalBoxes}</td>
             <td>${e.billWeightPerBox}</td>
             <td>${e.billTotalWeight}</td>
-            <td style="color: #de0223; font-weight:bold;">${billMarketAmount}</td>
-            <td style="color: #de0223; font-weight:bold;">${billPaymentAmount}</td>
+            <td style="font-weight:bold;">${billMarketAmount}</td>
+            <td style="font-weight:bold;">${billPaymentAmount}</td>
             <td>${e.billMoreDetails}</td>
             <td>
             <button type="" class="btn btn-primary" onclick = editBillDetails(${e.billNum})>Edit</button>

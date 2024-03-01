@@ -39,6 +39,7 @@
             margin-left:0px; 
 
         }
+   
 }
     </style>
 </head>
@@ -103,21 +104,28 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class=" in">
+                        {{!-- <li class=" in">
                             <form role="search" class="app-search d-none d-md-block me-3">
                                 <input type="text" placeholder="Search..." class="form-control mt-0">
                                 <a href="" class="active">
                                     <i class="fa fa-search"></i>
                                 </a>
                             </form>
-                        </li>
+                        </li> --}}
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li>
+                        {{!-- <li>
                             <a class="profile-pic" href="#">
                                 <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
                                     class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                        </li> --}}
+                        <li >
+                            <div class="logout-btn-custom" style="padding-right:10px;">
+                                
+                                <button class="buttonlogout" id="logout-btn" style=" margin-left: 10px;background-color:rgb(252, 52, 52);border:none;border-radius:10px;color:white;"><i class="fas fa-power-off"></i>&nbsp;Logout</button>
+                            </div>
+
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -195,7 +203,7 @@
                         <li class="sidebar-item pt-2">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addVendor"
                                 aria-expanded="false">
-                                <i class="far fas fa-address-card" aria-hidden="true"></i>
+                                <i class="fas fa-address-card" aria-hidden="true"></i>
                                 <span class="hide-menu">Vendors</span>
                             </a>
                         </li>
@@ -209,7 +217,7 @@
                   <span class="hide-menu">Add Payment Mode</span>
                 </a>
               </li>
-                        <li class="sidebar-item">
+                        {{!-- <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/profile"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -243,14 +251,14 @@
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                                 <span class="hide-menu">Blank Page</span>
                             </a>
-                        </li>
-                        <li class="sidebar-item">
+                        </li>--}}
+                        {{!-- <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="404.html"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 <span class="hide-menu">Error 404</span>
                             </a>
-                        </li>
+                        </li>  --}}
                         {{!-- <li class="text-center p-20 upgrade-btn">
                             <a href="https://www.wrappixel.com/templates/ampleadmin/"
                                 class="btn d-grid btn-danger text-white" target="_blank">
@@ -659,6 +667,7 @@
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
+    <script src="js/dashboard.js"></script>
     <!--This page JavaScript -->
     <!--chartis chart-->
     <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>

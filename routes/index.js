@@ -14,6 +14,8 @@ const {handleAddPaymentData,handleFetchPaymentModesForSelect,handleFetchPaymentD
 
 const {generateReportHandler} = require('../handlers/exportHandlers');
 
+const {handleLogout} = require('../handlers/dashboardHandlers');
+
 /* GET home page. */
 router.get('/dashboard', function(req, res, next) {
   res.render('dashboard', { title: 'Dashboard' });
@@ -63,6 +65,8 @@ router.get('/export', function(req, res, next) {
 
 
 // Routes using handler functions
+// Dashboard Module
+router.post('/logout', handleLogout);
 
 // Vendors Module
 router.get('/fetchVendors', handleFetchVendors);
