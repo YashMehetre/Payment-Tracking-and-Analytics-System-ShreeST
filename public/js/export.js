@@ -35,8 +35,11 @@ function generateReportButtonAction(){
     if(reportType == 1){
         window.location.href = `/showReport?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
     }
-    else{
+    else if(reportType == 2){
         let vendorFirmName = document.getElementById("vendorFirmName").value;
         window.location.href = `/showReport?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
+    }else if(reportType == 3){
+        let vendorFirmName = document.getElementById("vendorFirmName").value;
+        window.location.href = `/showReport3?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
     }
 }

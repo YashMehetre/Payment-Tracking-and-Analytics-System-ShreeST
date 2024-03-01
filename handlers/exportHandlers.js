@@ -30,17 +30,26 @@ async function generateReportHandler(req, res) {
   }
   else if (reportType == 3){
     let vendorId = await getVendorId(vendorFirmName);
-    let sql = `SELECT * FROM billdetails WHERE vendorId = ? AND billDate BETWEEN ? AND ? `
-    // try {
-    //   const [result] = await pool
-    //     .promise()
-    //     .execute(sql, [vendorId, fromDate, toDate]);
-    //   res.json(result);
-    // } catch (error) {
-    //   console.log(error);
-    //   res.status(500).send("Internal Server Error");
-    // }
+    let sql1 = `SELECT billNum as id, DATE_FORMAT(billDate, '%d-%m-%Y') as date, billPaymentAmount as pendingAmount,billTotalBoxes FROM billdetails WHERE vendorId = ? AND billDate BETWEEN ? AND ?`; 
+
+    let sql2 = `SELECT paymentId as id, DATE_FORMAT(paymentDate, '%d-%m-%Y') as date, paymentReceivedAmt as paymentAmount FROM paymentdetails WHERE vendorId = ? AND paymentDate BETWEEN ? AND ?`;
+    try {
+      const [result1] = await pool
+        .promise()
+        .execute(sql1, [vendorId, fromDate, toDate]);
+      const [result2] = await pool
+        .promise()
+        .execute(sql2, [vendorId, fromDate, toDate]);
+      let result = result1.concat(result2);
+      result.sort((a, b) => (a.date > b.date ? -1 : 1));
+      // console.log(result);
+      res.json(result);
   }
+  catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
 }
 const getVendorId = async (vendorFirm) => {
   let sql = `SELECT vendorId FROM vendordetails WHERE vendorFirm = ?`;
