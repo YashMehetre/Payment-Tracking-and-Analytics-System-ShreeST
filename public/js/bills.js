@@ -70,12 +70,19 @@ async function addBillData() {
         billTotalBoxes == "" ||
         billWeightPerBox == "" ||
         billTotalWeight == "" ||
-        billMarketAmount == "" ||
-        billPaymentAmount == ""
+        billMarketAmount == "" 
     ) {
         alert("Please fill all the required fields");
         return;
     } else {
+        if (billPaymentAmount == "") {
+            billPaymentAmount = null;
+            let choice = confirm("Do you want to notify the Vendor about the Payment Amount?")
+            if (choice == true) {
+                // alert("Please fill the Payment Amount");
+                console.log("Payment Amount is not filled");
+            }
+        }
         let data = {
             billDate,
             vendorFirmName,
@@ -103,50 +110,30 @@ async function addBillData() {
         }
     }
 }
+
 async function fetchLastBillData(limit) {
     const response = await fetch(`/fetchLastBillData?limit=${limit}`);
     const data = await response.json();
     return data;
 }
 async function showLastBillData() {
-    const data = await fetchLastBillData(5);
-    let tableBody = document.querySelector(".billDetails");
-    data.forEach(e => {
-        let billMarketAmount =  e.billMarketAmount.toLocaleString('en-IN', {useGrouping:true});
-        let billPaymentAmount =  e.billPaymentAmount.toLocaleString('en-IN', {useGrouping:true});
-        let tr = document.createElement("tr");
-        tr.innerHTML = `<td>${e.billNum}</td>
-        <td style="font-weight:bold;">${e.vendorFirm}</td>
-        <td>${e.billDate}</td>
-        <td>${e.billGoodsType}</td>
-        <td>${e.billTotalBoxes}</td>
-        <td>${e.billWeightPerBox}</td>
-        <td>${e.billTotalWeight}</td>
-        <td style="font-weight:bold;">${billMarketAmount}</td>
-        <td style="font-weight:bold;">${billPaymentAmount}</td>
-        <td>${e.billMoreDetails}</td>
-        <td>
-        <button type="" class="btn btn-primary" onclick = editBillDetails(${e.billNum})>Edit</button>
-        <button type="submit" class="btn btn-danger" onclick = deleteBillDetails(${e.billNum})>Delete</button>
-        </td> `
-        tableBody.appendChild(tr);
-    });
-}
-async function searchBillData() {
-    let vendorFirmName = document.getElementById("vendorFirmNameSearch").value;
-    let date = document.getElementById("billSearchDate").value;
-    if (vendorFirmName == "" || date == "") {
-        alert("Please Choose the Date and the Vendor Firm Name!");
-        return;
-    }
-    else {
-        const response = await fetch(`/searchBillData?vendorFirmName=${vendorFirmName}&date=${date}`);
-        const data = await response.json();
+    try {
+        const data = await fetchLastBillData(5);
         let tableBody = document.querySelector(".billDetails");
-        tableBody.innerHTML = "";
         data.forEach(e => {
-            let billMarketAmount =  e.billMarketAmount.toLocaleString('en-IN', {useGrouping:true});
-            let billPaymentAmount =  e.billPaymentAmount.toLocaleString('en-IN', {useGrouping:true});
+            let billMarketAmount = parseFloat(e.billMarketAmount) || 0;
+            let profitLoss;
+            let billPaymentAmount;
+            if (e.billPaymentAmount == null) {
+                billPaymentAmount = "-";
+                profitLoss = "-";
+                billMarketAmount = billMarketAmount.toLocaleString('en-IN', { useGrouping: true });
+            } else {
+                billPaymentAmount = parseFloat(e.billPaymentAmount) || 0;
+                profitLoss = billPaymentAmount - billMarketAmount;
+                billPaymentAmount = billPaymentAmount.toLocaleString('en-IN', { useGrouping: true });
+                billMarketAmount = billMarketAmount.toLocaleString('en-IN', { useGrouping: true });
+            }
             let tr = document.createElement("tr");
             tr.innerHTML = `<td>${e.billNum}</td>
             <td style="font-weight:bold;">${e.vendorFirm}</td>
@@ -159,14 +146,78 @@ async function searchBillData() {
             <td style="font-weight:bold;">${billPaymentAmount}</td>
             <td>${e.billMoreDetails}</td>
             <td>
-            <button type="" class="btn btn-primary" onclick = editBillDetails(${e.billNum})>Edit</button>
-            <button type="submit" class="btn btn-danger" onclick = deleteBillDetails(${e.billNum})>Delete</button>
-            </td> `
-
+            ${e.billPaymentAmount == null ? `<button type="button" class="btn btn-warning" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>` : ''}
+            <button type="button" class="btn btn-primary" onclick="editBillDetails(${e.billNum})">Edit</button>
+            <button type="button" class="btn btn-danger" onclick="deleteBillDetails(${e.billNum})">Delete</button>
+            </td>`;
             tableBody.appendChild(tr);
+            
+            // Adjust profitLoss color
+            const profitLossCell = tr.querySelector(".profit-loss");
+            if (profitLossCell) {
+                profitLossCell.textContent = profitLoss === "-" ? "-" : profitLoss.toLocaleString("en-IN", { useGrouping: true });
+                profitLossCell.style.color = profitLoss > 0 ? 'green' : 'red';
+            }
         });
+    } catch (error) {
+        console.error("Error loading last bill data:", error);
     }
 }
+
+async function searchBillData() {
+    try {
+        let vendorFirmName = document.getElementById("vendorFirmNameSearch").value;
+        let date = document.getElementById("billSearchDate").value;
+        if (vendorFirmName == "" || date == "") {
+            alert("Please Choose the Date and the Vendor Firm Name!");
+            return;
+        } else {
+            const response = await fetch(`/searchBillData?vendorFirmName=${vendorFirmName}&date=${date}`);
+            const data = await response.json();
+            let tableBody = document.querySelector(".billDetails");
+            tableBody.innerHTML = "";
+            data.forEach(e => {
+                let billMarketAmount = parseFloat(e.billMarketAmount) || 0;
+                let profitLoss;
+                let billPaymentAmount = e.billPaymentAmount !== null ? parseFloat(e.billPaymentAmount).toLocaleString('en-IN', { useGrouping: true }) : "-";
+                if (e.billPaymentAmount !== null) {
+                    profitLoss = parseFloat(e.billPaymentAmount) - billMarketAmount;
+                } else {
+                    profitLoss = "-";
+                    billMarketAmount = billMarketAmount.toLocaleString('en-IN', { useGrouping: true });
+                }
+                let tr = document.createElement("tr");
+                tr.innerHTML = `<td>${e.billNum}</td>
+                <td style="font-weight:bold;">${e.vendorFirm}</td>
+                <td>${e.billDate}</td>
+                <td>${e.billGoodsType}</td>
+                <td>${e.billTotalBoxes}</td>
+                <td>${e.billWeightPerBox}</td>
+                <td>${e.billTotalWeight}</td>
+                <td style="font-weight:bold;">${billMarketAmount}</td>
+                <td style="font-weight:bold;">${billPaymentAmount}</td>
+                <td>${e.billMoreDetails}</td>
+                <td>
+                ${e.billPaymentAmount == null ? `<button class="btn btn-warning" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>` : ''}
+                <button type="button" class="btn btn-primary" onclick="editBillDetails(${e.billNum})">Edit</button>
+                <button type="button" class="btn btn-danger" onclick="deleteBillDetails(${e.billNum})">Delete</button>
+                </td>`;
+                tableBody.appendChild(tr);
+                
+                // Adjust profitLoss color
+                const profitLossCell = tr.querySelector(".profit-loss");
+                if (profitLossCell) {
+                    profitLossCell.textContent = profitLoss === "-" ? "-" : profitLoss.toLocaleString("en-IN", { useGrouping: true });
+                    profitLossCell.style.color = profitLoss > 0 ? 'green' : 'red';
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Error searching bill data:", error);
+    }
+}
+
+
 async function deleteBillDetails(billNum) {
     const choice = confirm("Do you want to delete the bill?");
     if (choice == true) {
@@ -200,7 +251,7 @@ async function editBillDetails(billNum) {
     document.getElementById("billWeightPerBox").value = data[0].billWeightPerBox;
     document.getElementById("billTotalWeight").value = data[0].billTotalWeight;
     document.getElementById("billMarketAmount").value = data[0].billMarketAmount;
-    document.getElementById("billPaymentAmount").value = data[0].billPaymentAmount;
+    document.getElementById("billPaymentAmount").value = data[0].billPaymentAmount || "";
     document.getElementById("billMoreDetails").value = data[0].billMoreDetails;
     document.getElementById("addBillData").style.display = "none";
     document.getElementById("updateBillData").style.display = "";
@@ -229,11 +280,18 @@ async function updateBillData() {
         billTotalBoxes == "" ||
         billWeightPerBox == "" ||
         billTotalWeight == "" ||
-        billMarketAmount == "" ||
-        billPaymentAmount == ""
+        billMarketAmount == "" 
     ) {
         alert("Please fill all the required fields!");
         return;
+    }
+    if (billPaymentAmount == "") {
+        let choice = confirm("Do you want to notify the Vendor about the Payment Amount?")
+        if (choice == true) {
+            // alert("Please fill the Payment Amount");
+            console.log("Payment Amount is not filled");
+        }
+        billPaymentAmount = null;
     }
     const choice = confirm("Do you want to update the bill details?");
     if (choice == true) {
@@ -265,7 +323,9 @@ async function updateBillData() {
     }
     return;
 }
-
+function notifyUser(billNum, vendorFirm) {
+    alert(`Notify user for bill number ${billNum} from vendor firm ${vendorFirm}`);
+}
 document.getElementById("cancelAction").addEventListener("click", cancelAction);
 function cancelAction() {
     location.reload();

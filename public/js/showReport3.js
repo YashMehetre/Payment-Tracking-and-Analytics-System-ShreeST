@@ -11,8 +11,8 @@ function loadSum() {
     let sumBoxes = 0;
     for (let i = 0; i < rows.length; i++) {
         let payment = rows[i].cells[4].innerText;
-        let pending = rows[i].cells[5].innerText;
-        let boxes = rows[i].cells[3].innerText;
+        let pending = rows[i].cells[3].innerText;
+        let boxes = rows[i].cells[2].innerText;
         if (payment!="-") {
             sumPayment += parseInt(payment.replace(/,/g, ""));
         }
@@ -46,23 +46,25 @@ async function showLoadingReport() {
     try {
         const data = await generateReportHandler();
         let index = 1;
-        let type = "";
+        // let type = "";
         data.forEach(e => {
-            if(e.paymentAmount){
-                type = "Pay";
-                e.paymentAmount = e.paymentAmount.toLocaleString('en-IN', { useGrouping: true });
-            }
-            if(e.pendingAmount){
-                type = "Bill";
-                e.pendingAmount = e.pendingAmount.toLocaleString('en-IN', { useGrouping: true });
-            }
+            // if(e.paymentAmount){
+            //     type = "Pay";
+            //     e.paymentAmount = e.paymentAmount.toLocaleString('en-IN', { useGrouping: true });
+            // }
+            // if(e.pendingAmount){
+            //     type = "Bill";
+            //     e.pendingAmount = e.pendingAmount.toLocaleString('en-IN', { useGrouping: true });
+            // }
+            // <td>${type}Num : ${e.id}</td>
             const row = document.createElement('tr');
             row.innerHTML = `<td>${index}</td>
-            <td>${type}Num : ${e.id}</td>
+             
             <td>${e.date}</td>
             <td>${e.billTotalBoxes || "-"}</td>
-            <td style="color:green">${e.paymentAmount || "-"}</td>
-            <td style="color:red">${e.pendingAmount || "-"}</td>`;
+            <td style="color:red">${e.pendingAmount || "-"}</td>
+            <td style="color:green">${e.paymentAmount || "-"}</td>`;
+            
             document.getElementById("data-table-table").appendChild(row);
             index++;
         });

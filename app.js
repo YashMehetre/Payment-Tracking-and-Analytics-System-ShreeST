@@ -23,12 +23,15 @@ app.set('view engine', 'hbs');
 
 // Apply authentication middleware to protect all routes
 var authenticate = require('./middlewares/auth.middleware.js'); // Import the authentication middleware
+
 app.get('/', function(req, res, next) {
   res.render('index', { title: 'Login' });
 });
+
 app.post('/login', authenticate, function(req, res, next) {
   res.redirect('/dashboard');
 });
+
 app.use(authenticate);
 
 // Routes setup
