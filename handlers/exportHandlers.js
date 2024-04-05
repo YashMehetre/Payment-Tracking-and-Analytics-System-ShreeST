@@ -1,4 +1,5 @@
-    const pool = require("../modules/database");
+    const { status } = require("express/lib/response");
+const pool = require("../modules/database");
 
 async function generateReportHandler(req, res) {
  let reportType = req.query.reportType;
@@ -30,9 +31,10 @@ async function generateReportHandler(req, res) {
   }
   else if (reportType == 3){
     let vendorId = await getVendorId(vendorFirmName);
-    let sql1 = `SELECT billNum as id, DATE_FORMAT(billDate, '%d-%m-%Y') as date, billPaymentAmount as pendingAmount,billTotalBoxes FROM billdetails WHERE vendorId = ? AND billDate BETWEEN ? AND ?`; 
+    let sql1 = `SELECT billNum as id, DATE_FORMAT(billDate, '%Y-%m-%d') as date, billPaymentAmount as pendingAmount, billTotalBoxes FROM billdetails WHERE vendorId = ? AND billDate BETWEEN ? AND ?`;
 
-    let sql2 = `SELECT paymentId as id, DATE_FORMAT(paymentDate, '%d-%m-%Y') as date, paymentReceivedAmt as paymentAmount FROM paymentdetails WHERE vendorId = ? AND paymentDate BETWEEN ? AND ?`;
+    let sql2 = `SELECT paymentId as id, DATE_FORMAT(paymentDate, '%Y-%m-%d') as date, paymentReceivedAmt as paymentAmount FROM paymentdetails WHERE vendorId = ? AND paymentDate BETWEEN ? AND ?`;
+    
     try {
       const [result1] = await pool
         .promise()
@@ -41,14 +43,27 @@ async function generateReportHandler(req, res) {
         .promise()
         .execute(sql2, [vendorId, fromDate, toDate]);
       let result = result1.concat(result2);
-      result.sort((a, b) => (a.date > b.date ? -1 : 1));
+    
+      // Parse date strings into Date objects for proper sorting
+      result.forEach(item => {
+        item.date = new Date(item.date);
+      });
+    
+      // Sort the result array based on the date field
+      result.sort((a, b) => a.date - b.date);
+    
+      // Convert date objects back to string format
+      result.forEach(item => {
+        item.date = item.date.toLocaleDateString('en-GB'); // Change locale as needed
+      });
+    
       // console.log(result);
       res.json(result);
-  }
-  catch (error) {
-    console.log(error);
-    res.status(500).send("Internal Server Error");
-  }
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+    
 }
 }
 const getVendorId = async (vendorFirm) => {
@@ -64,5 +79,16 @@ const getVendorId = async (vendorFirm) => {
     throw error;
   }
 };
-
-module.exports = { generateReportHandler };
+async function handleAddBillPaymentAmount(req, res) {
+  let billNum = req.query.billNum;
+  let billPaymentAmount = req.query.billPaymentAmount;
+  let sql = `UPDATE billdetails SET billPaymentAmount = ? WHERE billNum = ?`;
+  try {
+    await pool.promise().execute(sql, [billPaymentAmount, billNum]);
+    res.json({ status: "success" });
+}
+catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+}}
+module.exports = { generateReportHandler,handleAddBillPaymentAmount };

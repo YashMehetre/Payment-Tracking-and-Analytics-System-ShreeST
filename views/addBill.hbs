@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
+    {{!-- <meta
       name="keywords"
-      content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template"
+      content=""
     />
     <meta
       name="description"
       content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
-    />
+    /> --}}
     <meta name="robots" content="noindex,nofollow" />
-    <title>Ample Admin Lite Template by WrapPixel</title>
+    <title>Add Bill</title>
     <link
       rel="canonical"
-      href="https://www.wrappixel.com/templates/ample-admin-lite/"
+      href=""
     />
     <!-- Favicon icon -->
     <link
@@ -78,7 +78,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="dashboard.html">
+            <a class="navbar-brand" href="/dashboard">
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!-- Dark Logo icon -->
@@ -345,7 +345,7 @@
                       id="billNum"
                       name="billNum"
                       placeholder="Bill Number"
-                      value=""
+                      value="1"
                       disabled
                     />
                   </div>
@@ -385,15 +385,18 @@
                     />
                   </div>
                   <div class="form-group col-md-4">
-                    <label for="billWeightPerBox">Weight (kg)
+                     <label for="billWeightPerBox">Weight (kg per Box)
                       <span style="color: red;">*</span></label>
-                    <input
-                      type="float"
-                      class="form-control"
+                    <select
                       id="billWeightPerBox"
                       name="billWeightPerBox"
-                      placeholder="kg per box"
-                    />
+                      class="form-control"
+                    >
+                      <option selected>9.5</option>
+                      <option>10</option>
+                       <option>8.5</option>
+                      <option >20</option>
+                    </select>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="billTotalWeight">Total Weight (kg)
@@ -403,7 +406,8 @@
                       class="form-control"
                       id="billTotalWeight"
                       name="billTotalWeight"
-                      placeholder="kg"
+                      placeholder="0"
+                      disabled
                     />
                   </div>
 
@@ -423,8 +427,7 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label for="billPaymentAmount">Party Payment Amount(<span
-                      >&#8377;</span>)
-                      <span style="color: red;">*</span></label>
+                      >&#8377;</span>) </label>
                     <input
                       type="float"
                       class="form-control"

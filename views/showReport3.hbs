@@ -60,11 +60,11 @@
             <thead class="thead-light" id="tableH">
                 <tr>
                     <th>No.</th>
-                    <th>Number</th>
+                    {{!-- <th>Number</th> --}}
                     <th>Date</th>
                     <th>Boxes</th>
-                    <th>Received(<span>&#8377;</span>)</th>
-                    <th>Pending(<span>&#8377;</span>)</th>
+                    <th>Debit(<span>&#8377;</span>)</th>
+                    <th>Credit(<span>&#8377;</span>)</th>
                 </tr>
             </thead>
             <tbody id="data-table-table" >
@@ -74,10 +74,11 @@
             </tbody>
             <tfoot id="tableFoot">
                 <tr id="sumRow1" style="font-weight:bold" class="table-success">
-                    <td colspan="3">Total</td>
+                    <td colspan="2">Total</td>
                     <td id="totalBoxes">0</td>
-                    <td id="totalPaymentAmount">0</td>
                     <td id="totalPendingAmount">0</td>
+                    <td id="totalPaymentAmount">0</td>
+                    
                 </tr>
                 <tr id="sumRow2" style="font-weight:bold" class="table-danger">
                     <td id="finalPendingAmt" colspan="3">0</td>

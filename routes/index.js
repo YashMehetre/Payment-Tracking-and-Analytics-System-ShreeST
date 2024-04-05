@@ -1,4 +1,5 @@
 var express = require('express');
+
 var router = express.Router();
 
 const { handleFetchVendors, handleAddVendors, handleGetVendorDetails,handleUpdateVendorDetails,handleDeleteVendorDetails,handleVendorIdConversion} = require('../handlers/vendorHandlers');
@@ -12,7 +13,7 @@ const {handleAddPaymentModeData, handleFetchPaymentModes,handleDeletePaymentMode
 
 const {handleAddPaymentData,handleFetchPaymentModesForSelect,handleFetchPaymentDetails,handleFetchLastTenPaymentDetails,handleSearchPaymentData,handleDeletePaymentDetails} = require('../handlers/addPaymentHandlers');
 
-const {generateReportHandler} = require('../handlers/exportHandlers');
+const {generateReportHandler,handleAddBillPaymentAmount} = require('../handlers/exportHandlers');
 
 const {handleLogout} = require('../handlers/dashboardHandlers');
 
@@ -106,12 +107,14 @@ router.post('/deletePaymentDetails',handleDeletePaymentDetails);
 // Export Data Module
 
 router.get('/generateReport',generateReportHandler);
+
 router.get('/showReport', function(req, res){
   res.render('showReport', { title: `${req.query.reportType==2?'Vendorwise Loading Report':req.query.reportType==2?'Loading Vendor Deposit/Pending Amount Report':'Loading Report'}`,fromDate :`${req.query.fromDate}`,
   toDate : `${req.query.toDate}`,
   vendorFirmName : `${req.query.reportType==1?'All':req.query.vendorFirmName}`});
 });
-router.get('/showReport3', function(req, res){
+router.get('/addBillPaymentAmount', handleAddBillPaymentAmount)
+router.get('/showReportType3', function(req, res){
   res.render('showReport3', { title: `${req.query.reportType==2?'Vendorwise Loading Report':req.query.reportType==3?'Loading Vendor Deposit/Pending Amount Report':'Loading Report'}`,fromDate :`${req.query.fromDate}`,
   toDate : `${req.query.toDate}`,
   vendorFirmName : `${req.query.reportType==1?'All':req.query.vendorFirmName}`});
