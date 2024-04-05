@@ -1,4 +1,5 @@
-    const pool = require("../modules/database");
+    const { status } = require("express/lib/response");
+const pool = require("../modules/database");
 
 async function generateReportHandler(req, res) {
  let reportType = req.query.reportType;
@@ -78,5 +79,16 @@ const getVendorId = async (vendorFirm) => {
     throw error;
   }
 };
-
-module.exports = { generateReportHandler };
+async function handleAddBillPaymentAmount(req, res) {
+  let billNum = req.query.billNum;
+  let billPaymentAmount = req.query.billPaymentAmount;
+  let sql = `UPDATE billdetails SET billPaymentAmount = ? WHERE billNum = ?`;
+  try {
+    await pool.promise().execute(sql, [billPaymentAmount, billNum]);
+    res.json({ status: "success" });
+}
+catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+}}
+module.exports = { generateReportHandler,handleAddBillPaymentAmount };

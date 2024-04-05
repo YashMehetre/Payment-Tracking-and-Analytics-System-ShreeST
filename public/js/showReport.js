@@ -78,7 +78,7 @@ async function showLoadingReport() {
             let billPaymentAmount;
             if (e.billPaymentAmount === null) {
                 // billPaymentAmount = `<button class="notify-btn" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>`;
-                billPaymentAmount = `<button type="button" class="btn btn-primary notify-btn" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>`;
+                billPaymentAmount = `<button type="button" class="btn btn-primary notify-btn" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>&nbsp<button type="button" class="btn btn-success notify-btn" onclick="addBillPaymentAmount(${e.billNum})">Add</button>`;
                 profitLoss = "-";
                 billMarketAmount = billMarketAmount.toLocaleString("en-IN", {
                     useGrouping: true,
@@ -121,7 +121,28 @@ async function showLoadingReport() {
         console.error("Error loading report:", error);
     }
 }
+async function addBillPaymentAmount(billNum) {
+  const billPaymentAmount = prompt("Enter Party Payment Amount :");
+  if (billPaymentAmount === null) return;
 
+  if (billPaymentAmount === "") {
+    alert("Please enter a valid amount.");
+    return;
+  }
+
+  if (isNaN(billPaymentAmount)) {
+    alert("Please enter a valid number.");
+    return;
+  }
+
+  const response = await fetch(`/addBillPaymentAmount?billNum=${billNum}&billPaymentAmount=${billPaymentAmount}`);
+  if (response.status === 200) {
+    alert("Party payment amount added successfully.");
+    location.reload();
+  } else {
+    alert("Error adding party payment amount.");
+  }
+}
 function searchVendorFirm() {
   const searchInput = document.getElementById("searchInput");
   const table = document.getElementById("table");
@@ -173,7 +194,7 @@ function exportToPDF() {
     win.write(reportDetails.innerHTML);
     win.write("<br>");
     win.write("<hr>");
-    win.write(tableContainer.innerHTML.replace(/<button[^>]*>Notify<\/button>/g, "-")); // Replace Notify button with "-"
+    win.write(tableContainer.innerHTML.replace(/<button[^>]*>.*?<\/button>/g, ""));
     win.write("<br>");
     win.write("</body></html>");
     win.close();
