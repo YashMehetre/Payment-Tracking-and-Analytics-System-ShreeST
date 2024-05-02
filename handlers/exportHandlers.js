@@ -7,8 +7,7 @@ async function generateReportHandler(req, res) {
   let fromDate = req.query.fromDate;
   let toDate = req.query.toDate;
   if (reportType == 1) {
-    // let sql = `SELECT * FROM billdetails WHERE billDate BETWEEN ? AND ?`;
-    let sql = `SELECT billdetails.billNum, DATE_FORMAT(billdetails.billDate, '%d-%m-%Y') as billDate, vendordetails.vendorFirm, billdetails.billGoodsType, billdetails.billTotalBoxes, billdetails.billWeightPerBox, billdetails.billTotalWeight, billdetails.billMarketAmount, billdetails.billPaymentAmount, billdetails.billMoreDetails FROM billdetails INNER JOIN vendordetails ON billdetails.vendorId = vendordetails.vendorId WHERE billDate BETWEEN ? AND ?`;
+    let sql = `SELECT billdetails.billNum, DATE_FORMAT(billdetails.billDate, '%d-%m-%Y') as billDate, vendordetails.vendorFirm, billdetails.billGoodsType, billdetails.billTotalBoxes, billdetails.billWeightPerBox, billdetails.billTotalWeight, billdetails.billMarketAmount, billdetails.billPaymentAmount, billdetails.billMoreDetails FROM billdetails INNER JOIN vendordetails ON billdetails.vendorId = vendordetails.vendorId WHERE billDate BETWEEN ? AND ? ORDER by billdetails.billDate`;
     try {
       const [result] = await pool.promise().execute(sql, [fromDate, toDate]);
       res.json(result);
@@ -18,7 +17,7 @@ async function generateReportHandler(req, res) {
     }
   } else if (reportType == 2){
     let vendorId = await getVendorId(vendorFirmName);
-    let sql = `SELECT billdetails.billNum, DATE_FORMAT(billdetails.billDate, '%d-%m-%Y') as billDate, vendordetails.vendorFirm, billdetails.billGoodsType, billdetails.billTotalBoxes, billdetails.billWeightPerBox, billdetails.billTotalWeight, billdetails.billMarketAmount, billdetails.billPaymentAmount, billdetails.billMoreDetails FROM billdetails INNER JOIN vendordetails ON billdetails.vendorId = vendordetails.vendorId WHERE vendordetails.vendorId = ? AND billDate BETWEEN ? AND ?`;
+    let sql = `SELECT billdetails.billNum, DATE_FORMAT(billdetails.billDate, '%d-%m-%Y') as billDate, vendordetails.vendorFirm, billdetails.billGoodsType, billdetails.billTotalBoxes, billdetails.billWeightPerBox, billdetails.billTotalWeight, billdetails.billMarketAmount, billdetails.billPaymentAmount, billdetails.billMoreDetails FROM billdetails INNER JOIN vendordetails ON billdetails.vendorId = vendordetails.vendorId WHERE vendordetails.vendorId = ? AND billDate BETWEEN ? AND ? ORDER by billdetails.billDate`;
     try {
       const [result] = await pool
         .promise()
