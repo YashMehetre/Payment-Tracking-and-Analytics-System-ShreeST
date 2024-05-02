@@ -50,7 +50,9 @@ function loadSum() {
     document.getElementById("sumRow").style.display = "table-row";
 }
 
-
+const sortByHandler = (param) => {
+  
+}
 const generateReportHandler = async () => {
   urlParams = new URLSearchParams(window.location.search);
   const reportType = urlParams.get("reportType");
