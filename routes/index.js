@@ -5,7 +5,7 @@ var router = express.Router();
 const { handleFetchVendors, handleAddVendors, handleGetVendorDetails,handleUpdateVendorDetails,handleDeleteVendorDetails,handleVendorIdConversion} = require('../handlers/vendorHandlers');
 
 
-const { handleFetchVendorsForSelect, handleAddBillData, handleGetLastBillNum, handleFetchLastBillData, handleSearchBillData,handleDeleteBillDetails, handleFetchBillData, handleUpdateBillData} = require('../handlers/billHandlers');
+const { handleFetchVendorsForSelect, handleAddBillData, handleGetLastBillNum, handleFetchLastBillData, handleSearchBillData,handleDeleteBillDetails, handleFetchBillData, handleUpdateBillData, handleFetchLastBillDate} = require('../handlers/billHandlers');
 
 
 const {handleAddPaymentModeData, handleFetchPaymentModes,handleDeletePaymentMode,handleUpdatePaymentMode,handleGetPaymentModeDetails,handlePaymentModeIdConversion} = require('../handlers/paymentModeHandlers');
@@ -86,6 +86,7 @@ router.get('/searchBillData',handleSearchBillData);
 router.get('/deleteBillDetails',handleDeleteBillDetails)
 router.get('/fetchBillData', handleFetchBillData)
 router.post('/updateBillData', handleUpdateBillData)
+router.get('/fetchLastBillDate',handleFetchLastBillDate)
 
 
 // Add Payment Mode Module

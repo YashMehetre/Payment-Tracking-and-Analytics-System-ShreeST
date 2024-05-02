@@ -115,4 +115,15 @@ async function handleUpdateBillData(req, res) {
     }
 }
 
-module.exports = {handleSearchBillData,handleFetchVendorsForSelect, handleAddBillData, handleGetLastBillNum, handleFetchLastBillData, handleDeleteBillDetails, handleFetchBillData, handleUpdateBillData};
+async function handleFetchLastBillDate(req, res) {
+    let sql = `SELECT DATE_FORMAT(billdetails.billDate, '%d-%m-%Y') as billDate FROM billdetails ORDER BY billdetails.billNum DESC LIMIT 1`;
+    try {
+        const [result] = await pool.promise().query(sql);
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+module.exports = {handleSearchBillData,handleFetchVendorsForSelect, handleAddBillData, handleGetLastBillNum, handleFetchLastBillData, handleDeleteBillDetails, handleFetchBillData, handleUpdateBillData,handleFetchLastBillDate};
