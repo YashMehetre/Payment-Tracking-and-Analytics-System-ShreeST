@@ -323,6 +323,17 @@ async function updateBillData() {
     }
     return;
 }
+async function fetchLastBillDate() {
+    const response = await fetch("/fetchLastBillDate");
+    const data = await response.json();
+    return data;
+}
+async function showLastBillDate() {
+    const data = await fetchLastBillDate();
+    const date = data[0].billDate.split("-").reverse().join("-")
+    document.getElementById("billDate").value = date;
+}
+
 function notifyUser(billNum, vendorFirm) {
     alert(`Notify user for bill number ${billNum} from vendor firm ${vendorFirm}`);
 }
@@ -333,6 +344,7 @@ function cancelAction() {
 function scrollToTable() {
     scrollTo(0,(document.body.scrollHeight/2)-50);
 }
+showLastBillDate();
 showLastBillData();
 showBillNumber();
 showVendorsForSelect();
