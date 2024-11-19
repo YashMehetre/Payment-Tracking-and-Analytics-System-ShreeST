@@ -50,9 +50,6 @@ function loadSum() {
     document.getElementById("sumRow").style.display = "table-row";
 }
 
-const sortByHandler = (param) => {
-  
-}
 const generateReportHandler = async () => {
   urlParams = new URLSearchParams(window.location.search);
   const reportType = urlParams.get("reportType");
@@ -205,6 +202,7 @@ function exportToPDF() {
     setTimeout(() => {
       document.body.removeChild(iframe);
     }, 1000);
+    location.reload();
   }
   
   function exportToXLSX() {
@@ -215,10 +213,12 @@ function exportToPDF() {
     }-${date.getDate()}`;
     
     // Replace Notify button with "-"
-    tableContainer.innerHTML = tableContainer.innerHTML.replace(/<button[^>]*>Notify<\/button>/g, "-");
+    tableContainer.innerHTML = tableContainer.innerHTML.replace(/<button[^>]*>Notify<\/button>/g, "");
+    tableContainer.innerHTML = tableContainer.innerHTML.replace(/<button[^>]*>Add<\/button>/g, "");
   
     const wb = XLSX.utils.table_to_book(tableContainer, { sheet: filename });
     XLSX.writeFile(wb, `${filename}.xlsx`);
+    location.reload();
   }
 
   function notifyUser(billNum, vendorFirm) {
