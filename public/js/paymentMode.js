@@ -52,9 +52,9 @@ async function showPaymentModes() {
         <td>${status}</td>
         <td>
                 <button type="" class="btn btn-primary" onclick = editPaymentMode(${e.paymentModeId})>Edit</button>
-                <button type="submit" class="btn btn-danger" onclick = deletePaymentMode(${e.paymentModeId})>Delete</button>
             </td>
         </tr>`;
+    // <button type="submit" class="btn btn-danger" onclick = deletePaymentMode(${e.paymentModeId})>Delete</button>
     document.querySelector(".paymentModes").appendChild(row);
   });
 }
@@ -96,7 +96,7 @@ async function fetchPaymentMode(paymentModeId) {
 }
 async function editPaymentMode(paymentModeId) {
   const data = await fetchPaymentMode(paymentModeId);
-    document.getElementById("updateDetailsTitle").style.display = "";
+  document.getElementById("updateDetailsTitle").style.display = "";
   document.getElementById("paymentModeName").value = data.paymentModeName;
   document.getElementById("paymentModeStatus").value = data.paymentModeStatus;
   document.getElementById("paymentModeDetails").value = data.paymentModeDetails;
@@ -149,6 +149,6 @@ function cancelUpdateDetails() {
 function scrollToTable() {
   window.scrollTo(0, document.body.scrollHeight);
 }
-function scrollToTop(){
-    window.scrollTo(0, 0);
+function scrollToTop() {
+  window.scrollTo(0, 0);
 }
