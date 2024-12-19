@@ -1,179 +1,201 @@
-<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords"
-        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
-    <meta name="description"
-        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
-    <meta name="robots" content="noindex,nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="keywords"
+      content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template"
+    />
+    <meta
+      name="description"
+      content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
+    />
+    <meta name="robots" content="noindex,nofollow" />
     <title>Ample Admin Lite Template by WrapPixel</title>
-    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <link
+      rel="canonical"
+      href="https://www.wrappixel.com/templates/ample-admin-lite/"
+    />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="plugins/images/favicon.png"
+    />
     <!-- Custom CSS -->
-   <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-   <link
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
- <style>
-        .logo{
-            height: 60px; 
-            width: 60px; 
-            margin-left:60px; 
-        }
-        @media only screen and (max-width: 765px) {
-  .logo{
-            height: 60px; 
-            width: 60px; 
-            margin-left:0px; 
-
-        }
-}
+    <style>
+      .logo{ height: 60px; width: 60px; margin-left:60px; } @media only screen
+      and (max-width: 765px) { .logo{ height: 60px; width: 60px;
+      margin-left:0px; } }
     </style>
-</head>
-<style>
- .chart{
-          width: 100%; 
-          min-height: 1000px;
-        }
-</style>
+  </head>
+  <style>
+   .chart {
+    width: 100%; /* Ensures the chart stretches within the container */
+    height: auto; /* Adjust height dynamically */
+    min-height: 300px; /* Minimum height for small screens */
+    max-height: 600px; /* Prevent excessive height */
+    margin: 0 auto; /* Centers the chart horizontally */
+    padding: 0; /* No extra padding */
+    box-sizing: border-box; /* Ensures padding is included in width */
+    overflow: hidden; /* Prevents overflow */
+}
 
-<body style="padding: 2px 2px 2px;">
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+    .chart {
+        width: calc(100% - 10px); /* Add slight padding for smaller screens */
+        margin: 10px auto; /* Ensure some space between charts */
+    }
+}
+
+/* Adjustments for small tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+    .chart {
+        width: calc(100% - 20px); /* Slight margin reduction */
+    }
+}
+
+/* For desktop view, maintain the full width */
+@media (min-width: 992px) {
+    .chart {
+        width: 100%; /* Full width */
+    }
+}
+
+
+
+  </style>
+
+  <body style="padding: 2px 2px 2px;">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
     <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
     </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="/dashboard">
-                        <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo.png" alt="homepage" class="logo" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        {{!-- <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="plugins/images/logo-text.png" alt="homepage" />
-                        </span> --}}
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-                        href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                              &nbsp;&nbsp;&nbsp;<h5 style="color: white;">Analytics</h5>
-                    <ul class="navbar-nav d-none d-md-block d-lg-none">
-                        <li class="nav-item">
-                            <a class="nav-toggler nav-link waves-effect waves-light text-white"
-                                href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+    <div
+      id="main-wrapper"
+      data-layout="vertical"
+      data-navbarbg="skin5"
+      data-sidebartype="full"
+      data-sidebar-position="absolute"
+      data-header-position="absolute"
+      data-boxed-layout="full"
+    >
+      <!-- ============================================================== -->
+      <!-- Topbar header - style you can find in pages.scss -->
+      <!-- ============================================================== -->
+      <header class="topbar" data-navbarbg="skin5">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+          <div class="navbar-header" data-logobg="skin6">
+            <!-- ============================================================== -->
+            <!-- Logo -->
+            <!-- ============================================================== -->
+            <a class="navbar-brand" href="/dashboard">
+              <!-- Logo icon -->
+              <b class="logo-icon">
+                <!-- Dark Logo icon -->
+                <img
+                  src="plugins/images/logo.png"
+                  alt="homepage"
+                  class="logo"
+                />
+              </b>
+            </a>
 
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        {{!-- <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li> --}}
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        {{!-- <li>
-                            <a class="profile-pic" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
-                        </li> --}}
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/dashboard"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li> <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/export"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Export Data</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addBill"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Add Bill</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item pt-2">
+            <a
+              class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+              href="javascript:void(0)"
+            ><i class="ti-menu ti-close"></i></a>
+          </div>
+          <!-- ============================================================== -->
+          <!-- End Logo -->
+          <!-- ============================================================== -->
+          <div
+            class="navbar-collapse collapse"
+            id="navbarSupportedContent"
+            data-navbarbg="skin5"
+          >
+            &nbsp;&nbsp;&nbsp;<h5 style="color: white;">Analytics</h5>
+            <ul class="navbar-nav d-none d-md-block d-lg-none">
+              <li class="nav-item">
+                <a
+                  class="nav-toggler nav-link waves-effect waves-light text-white"
+                  href="javascript:void(0)"
+                ><i class="ti-menu ti-close"></i></a>
+              </li>
+            </ul>
+            <!-- ============================================================== -->
+            <!-- Right side toggle and nav items -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav ms-auto d-flex align-items-center">
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <aside class="left-sidebar" data-sidebarbg="skin6">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+          <!-- Sidebar navigation-->
+          <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+              <!-- User Profile-->
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/dashboard"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Dashboard</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/export"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Export Data</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/addBill"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Add Bill</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPayment"
@@ -183,36 +205,28 @@
                   <span class="hide-menu">Add Payment</span>
                 </a>
               </li>
-                        {{!-- <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/viewData"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">View Data</span>
-                            </a>
-                        </li> --}}
-                        {{!-- <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/editData"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Edit Data</span>
-                            </a>
-                        </li> --}}
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/analytics"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Analytics</span>
-                            </a>
-                        </li> 
-                        
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addVendor"
-                                aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Vendors</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item pt-2">
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/analytics"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Analytics</span>
+                </a>
+              </li>
+
+              <li class="sidebar-item pt-2">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/addVendor"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span class="hide-menu">Vendors</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/addPaymentMode"
@@ -222,85 +236,106 @@
                   <span class="hide-menu">Add Payment Mode</span>
                 </a>
               </li>
-                    
-                    </ul>
 
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper" style="min-height: 250px;">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <div class="page-breadcrumb bg-white">
-                <div class="row align-items-center">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Blank Page</h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <div class="d-md-flex">
-                            <ol class="breadcrumb ms-auto">
-                                <li><a href="#" class="fw-normal">Dashboard</a></li>
-                            </ol>
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
-                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Upgrade
-                                to Pro</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="white-box">
-                            <div id="piechart_3d" class="pieChart"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center"> 
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
+            </ul>
+
+          </nav>
+          <!-- End Sidebar navigation -->
         </div>
+        <!-- End Sidebar scroll-->
+      </aside>
+      <!-- ============================================================== -->
+      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Page wrapper  -->
+      <!-- ============================================================== -->
+      <div class="page-wrapper" style="min-height: 250px;">
         <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
+        <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
+        <div class="page-breadcrumb bg-white">
+        </div>
+        <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="white-box">
+                Choose a date range to view analytics :
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                    <label for="startDate">Start Month
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="startDate"
+                      name="startDate"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="endDate">End Month
+                      <span style="color: red;">*</span></label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="endDate"
+                      name="endDate"
+                    />
+                  </div>
+                </div>
+                 <button
+                  type="submit"
+                  class="btn btn-success"
+                  id="showAnalytics"
+                >Show Analytics</button>
+            </div>
+        </div>
+        <!-- Commodity Price Trends -->
+        <div class="analytics" style="display: none;">
+        <div class="col-12">
+            <div class="white-box">
+                <h3>Commodity Price Trends</h3>
+                <div id="commodityPriceTrends" class="chart"></div>
+            </div>
+        </div>
+
+        <!-- Payment Trends -->
+        <div class="col-12">
+            <div class="white-box">
+                <h3>Payment Trends</h3>
+                <div id="paymentTrends" class="chart"></div>
+            </div>
+        </div>
+
+        <!-- Market Demand Trends -->
+        <div class="col-12">
+            <div class="white-box">
+                <h3>Market Demand Trends</h3>
+                <div id="marketDemandTrends" class="chart"></div>
+            </div>
+        </div>
+
+        <!-- Seasonal Profitability -->
+        <div class="col-12">
+            <div class="white-box">
+                <h3>Seasonal Profitability</h3>
+                <div id="seasonalProfitability" class="chart"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+        <footer class="footer text-center">
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page wrapper  -->
+      <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -316,37 +351,17 @@
     <script src="js/waves.js"></script>
     <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
+
+
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+        <script src="js/analytics.js"></script>
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: 'My Daily Activities',
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-        $(window).resize(function(){
-          drawChart();
-        });
-      }
-    </script>
-    <script>
-    
-    </script>
-</body>
+        </script>
+  </body>
 
 </html>
