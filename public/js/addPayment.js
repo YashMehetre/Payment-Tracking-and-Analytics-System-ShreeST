@@ -1,7 +1,6 @@
-window.onload = () => {
-  document.getElementById("vendorFirmName").focus();
+window.onload = function () {
+  document.getElementById("paymentDate").focus();
 };
-
 const fetchLastPaymentDate = async () => {
   const response = await fetch("/fetchLastPaymentDate");
   const result = await response.json();
