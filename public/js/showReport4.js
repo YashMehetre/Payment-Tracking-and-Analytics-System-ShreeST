@@ -21,7 +21,7 @@ function loadSum() {
       sumPartyAmount += parseInt(partyAmount.replace(/,/g, ""));
     }
     if (boxes != "-") {
-      sumBoxes += parseInt(boxes);
+      sumBoxes += parseInt(boxes.replace(/,/g, ""));
     }
   }
   document.getElementById("sumBoxes").innerText = sumBoxes.toLocaleString(
