@@ -1,7 +1,41 @@
 window.onload = async () => {
   await showVendorMasterReport();
   searchVendorFirm();
+  setTimeout(() => loadSum(), 1000);
 };
+
+function loadSum() {
+  const tableBody = document.querySelector("tbody");
+  const rows = tableBody.getElementsByTagName("tr");
+  let sumMarketAmount = 0;
+  let sumPartyAmount = 0;
+  let sumBoxes = 0;
+  for (let i = 0; i < rows.length; i++) {
+    let marketAmount = rows[i].cells[4].innerText;
+    let partyAmount = rows[i].cells[5].innerText;
+    let boxes = rows[i].cells[2].innerText;
+    if (marketAmount != "-") {
+      sumMarketAmount += parseInt(marketAmount.replace(/,/g, ""));
+    }
+    if (partyAmount != "-") {
+      sumPartyAmount += parseInt(partyAmount.replace(/,/g, ""));
+    }
+    if (boxes != "-") {
+      sumBoxes += parseInt(boxes.replace(/,/g, ""));
+    }
+  }
+  document.getElementById("sumBoxes").innerText = sumBoxes.toLocaleString(
+    "en-IN",
+    { useGrouping: true }
+  );
+  document.getElementById("sumMarketAmount").innerText =
+    sumMarketAmount.toLocaleString("en-IN", { useGrouping: true });
+  document.getElementById("sumPartyAmount").innerText =
+    sumPartyAmount.toLocaleString("en-IN", { useGrouping: true });
+  document.getElementById("sumProfitLoss").innerText = `${(
+    sumPartyAmount - sumMarketAmount
+  ).toLocaleString("en-IN", { useGrouping: true })}`;
+}
 
 const generateReportHandler = async () => {
   const urlParams = new URLSearchParams(window.location.search);
