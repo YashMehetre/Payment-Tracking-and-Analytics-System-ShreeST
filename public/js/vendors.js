@@ -69,7 +69,7 @@ function showVendors(data){
             <td>${e.vendorEmail}</td>
             <td>
                 <button type="" class="btn btn-primary" onclick="editVendorDetails(${e.vendorId})">Edit</button>
-                <button type="submit" class="btn btn-danger" onclick="deleteVendorDetails(${e.vendorId})">Delete</button>
+            <!-- <button type="submit" class="btn btn-danger" onclick="deleteVendorDetails(${e.vendorId})">Delete</button> -->
             </td>
         </tr>`;
         document.querySelector(".vendors").appendChild(row);

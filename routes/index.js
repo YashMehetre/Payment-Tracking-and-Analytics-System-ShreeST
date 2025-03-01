@@ -54,6 +54,10 @@ const {
   handlePaymentTrends,
 } = require("../handlers/analyticsHandlers");
 
+const {
+  handleSendTemplateMessage,
+  handleSendPendingPartyAmountMessage,
+} = require("../handlers/wp-notificationHandlers");
 /* GET home page. */
 router.get("/dashboard", function (req, res, next) {
   res.render("dashboard", { title: "Dashboard" });
@@ -215,4 +219,9 @@ router.get("/seasonalProfitabilityTrends", function (req, res) {
   ]);
 });
 
+router.post("/sendTemplateMessage", handleSendTemplateMessage);
+router.post(
+  "/sendPendingPartyAmountMessage",
+  handleSendPendingPartyAmountMessage
+);
 module.exports = router;

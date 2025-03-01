@@ -78,14 +78,8 @@ async function addBillData() {
     return;
   } else {
     if (billPaymentAmount == "") {
+      alert("Party Payment Amount is not filled.");
       billPaymentAmount = null;
-      let choice = confirm(
-        "Do you want to notify the Vendor about the Payment Amount?"
-      );
-      if (choice == true) {
-        // alert("Please fill the Payment Amount");
-        console.log("Payment Amount is not filled");
-      }
     }
     let data = {
       billDate,
@@ -326,13 +320,13 @@ async function updateBillData() {
     return;
   }
   if (billPaymentAmount == "") {
-    let choice = confirm(
-      "Do you want to notify the Vendor about the Payment Amount?"
-    );
-    if (choice == true) {
-      // alert("Please fill the Payment Amount");
-      console.log("Payment Amount is not filled");
-    }
+    // let choice = confirm(
+    //   "Do you want to notify the Vendor about the Payment Amount?"
+    // );
+    // if (choice == true) {
+    //   notifyUserWhileEdit(billNum);
+    // }
+    alert("Party Payment Amount is not filled.");
     billPaymentAmount = null;
   }
   const choice = confirm("Do you want to update the bill details?");
@@ -375,12 +369,37 @@ async function showLastBillDate() {
   const date = data[0].billDate.split("-").reverse().join("-");
   document.getElementById("billDate").value = date;
 }
-
-function notifyUser(billNum, vendorFirm) {
-  alert(
-    `Notify user for bill number ${billNum} from vendor firm ${vendorFirm}`
+async function notifyUser(billNumber, vendorFirm) {
+  const choice = confirm(
+    `Do you want to notify ${vendorFirm} about bill number ${billNumber}?`
   );
+
+  if (choice) {
+    try {
+      const response = await fetch("/sendPendingPartyAmountMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ billNum: billNumber }),
+      });
+
+      if (response.ok) {
+        alert(`✅ Successfully notified.`);
+      } else {
+        alert(
+          `❌ Failed to notify ${vendorFirm}.\nPlease verify the contact number and try again.`
+        );
+      }
+    } catch (error) {
+      console.error("Error notifying vendor:", error);
+      alert(
+        `⚠️ An error occurred while notifying ${vendorFirm}. Please try again later.`
+      );
+    }
+  }
 }
+
 document.getElementById("cancelAction").addEventListener("click", cancelAction);
 function cancelAction() {
   location.reload();
