@@ -237,8 +237,31 @@ function exportToXLSX() {
   location.reload();
 }
 
-function notifyUser(billNum, vendorFirm) {
-  alert(
-    `Notify user for bill number ${billNum} from vendor firm ${vendorFirm}`
+async function notifyUser(billNumber, vendorFirm) {
+  const choice = confirm(
+    `Do you want to notify ${vendorFirm} about bill number ${billNumber}?`
   );
+
+  if (choice) {
+    try {
+      const response = await fetch("/sendPendingPartyAmountMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ billNum: billNumber }),
+      });
+
+      if (response.ok) {
+        alert(`✅ Successfully notified.`);
+      } else {
+        alert(
+          `❌ Failed to notify .\nPlease verify the contact number and try again.`
+        );
+      }
+    } catch (error) {
+      console.error("Error notifying vendor:", error);
+      alert(`⚠️ An error occurred while notifying. Please try again later.`);
+    }
+  }
 }
