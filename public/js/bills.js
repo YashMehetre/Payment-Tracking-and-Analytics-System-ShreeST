@@ -150,17 +150,14 @@ async function showLastBillData() {
             <td style="font-weight:bold;">${billPaymentAmount}</td>
             <td>${e.billMoreDetails}</td>
             <td>
-            ${
-              e.billPaymentAmount == null
-                ? `<button type="button" class="btn btn-warning" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>`
-                : ""
-            }
-            <button type="button" class="btn btn-primary" onclick="editBillDetails(${
-              e.billNum
-            })">Edit</button>
-            <button type="button" class="btn btn-danger" onclick="deleteBillDetails(${
-              e.billNum
-            })">Delete</button>
+            ${e.billPaymentAmount == null
+          ? `<button type="button" class="btn btn-warning" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>`
+          : ""
+        }
+            <button type="button" class="btn btn-primary" onclick="editBillDetails(${e.billNum
+        })">Edit</button>
+            <button type="button" class="btn btn-danger" onclick="deleteBillDetails(${e.billNum
+        })">Delete</button>
             </td>`;
       tableBody.appendChild(tr);
 
@@ -199,8 +196,8 @@ async function searchBillData() {
         let billPaymentAmount =
           e.billPaymentAmount !== null
             ? parseFloat(e.billPaymentAmount).toLocaleString("en-IN", {
-                useGrouping: true,
-              })
+              useGrouping: true,
+            })
             : "-";
         if (e.billPaymentAmount !== null) {
           profitLoss = parseFloat(e.billPaymentAmount) - billMarketAmount;
@@ -222,17 +219,14 @@ async function searchBillData() {
                 <td style="font-weight:bold;">${billPaymentAmount}</td>
                 <td>${e.billMoreDetails}</td>
                 <td>
-                ${
-                  e.billPaymentAmount == null
-                    ? `<button class="btn btn-warning" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>`
-                    : ""
-                }
-                <button type="button" class="btn btn-primary" onclick="editBillDetails(${
-                  e.billNum
-                })">Edit</button>
-                <button type="button" class="btn btn-danger" onclick="deleteBillDetails(${
-                  e.billNum
-                })">Delete</button>
+                ${e.billPaymentAmount == null
+            ? `<button class="btn btn-warning" onclick="notifyUser(${e.billNum},'${e.vendorFirm}')">Notify</button>`
+            : ""
+          }
+                <button type="button" class="btn btn-primary" onclick="editBillDetails(${e.billNum
+          })">Edit</button>
+                <button type="button" class="btn btn-danger" onclick="deleteBillDetails(${e.billNum
+          })">Delete</button>
                 </td>`;
         tableBody.appendChild(tr);
 
