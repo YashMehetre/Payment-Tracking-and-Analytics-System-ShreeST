@@ -21,7 +21,7 @@ const showVendorsForSelect = async () => {
 
 function showSelectVendor() {
   let reportType = document.getElementById("reportType").value;
-  if (reportType != 1 && reportType != 4) {
+  if (reportType != 1 && reportType != 4 && reportType != 5) {
     document.querySelector(".selectVendor").style.display = "block";
     showVendorsForSelect();
     document
@@ -47,5 +47,8 @@ function generateReportButtonAction() {
     window.location.href = `/showReportType3?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
   } else if (reportType == "4") {
     window.location.href = `/showReportType4?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
+  }
+  else if (reportType == "5") {
+    window.location.href = `/showReportType5?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
   }
 }

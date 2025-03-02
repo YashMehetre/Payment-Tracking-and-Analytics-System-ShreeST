@@ -184,7 +184,15 @@ router.get("/showReportType3", function (req, res) {
 });
 router.get("/showReportType4", function (req, res) {
   res.render("showReport4", {
-    title: "Vendor Master Report",
+    title: "Profit Loss Master Report",
+    fromDate: `${req.query.fromDate}`,
+    toDate: `${req.query.toDate}`,
+    vendorFirmName: "All",
+  });
+});
+router.get("/showReportType5", function (req, res) {
+  res.render("showReport5", {
+    title: "Pending Amount Master Report",
     fromDate: `${req.query.fromDate}`,
     toDate: `${req.query.toDate}`,
     vendorFirmName: "All",
