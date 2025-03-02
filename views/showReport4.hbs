@@ -109,40 +109,25 @@
 
     <!-- Responsive Table -->
     <div class="container-fluid p-2" id="data-table">
-      <div class="table-responsive" id="table-responsive">
-        <table class="table table-bordered table-light" id="table">
-          <thead class="thead-light">
-            <tr>
-              <th>Ven. ID</th>
-              <th>Vendor Firm</th>
-              <th>Boxes</th>
-              {{! <th>Box Wt.</th> }}
-              <th>Total Weight(Kg)</th>
-              <th>Market Amount(<span>&#8377;</span>)</th>
-              <th>Party Amount(<span>&#8377;</span>)</th>
-              <th>Profit/Loss(<span>&#8377;</span>)</th>
-              {{! <th>Remarks</th> }}
-            </tr>
-          </thead>
-          <tbody id="data-table-table">
+  <div class="table-responsive" id="table-responsive">
+    <table class="table table-bordered table-light" id="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Ven. ID</th>
+          <th>Vendor Firm</th>
+          <th>Boxes</th>
+          <th>Total Weight (Kg)</th>
+          <th>Market Amount (<span>&#8377;</span>)</th>
+          <th>Party Amount (<span>&#8377;</span>)</th>
+          <th>Profit/Loss (<span>&#8377;</span>)</th>
+        </tr>
+      </thead>
+      <tbody id="data-table-table"></tbody>
+      <tfoot></tfoot> <!-- ✅ Total row will be appended here -->
+    </table>
+  </div>
+</div>
 
-            <!-- Sum row (initially hidden) -->
-
-          </tbody>
-          <tfoot>
-            <tr id="sumRow" style=" font-weight:bold" class="table-success">
-              <td colspan="2">Total :</td>
-              <td id="sumBoxes"></td>
-              {{! <td id="sumBoxWt"></td> }}
-              <td id="sumTotalWeight"></td>
-              <td id="sumMarketAmount"></td>
-              <td id="sumPartyAmount"></td>
-              <td id="sumProfitLoss"></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
 
     <!-- jQuery, Popper.js, Bootstrap -->
     <script

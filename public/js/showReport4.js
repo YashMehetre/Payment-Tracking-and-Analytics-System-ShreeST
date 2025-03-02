@@ -1,41 +1,7 @@
 window.onload = async () => {
   await showVendorMasterReport();
   searchVendorFirm();
-  setTimeout(() => loadSum(), 1000);
 };
-
-function loadSum() {
-  const tableBody = document.querySelector("tbody");
-  const rows = tableBody.getElementsByTagName("tr");
-  let sumMarketAmount = 0;
-  let sumPartyAmount = 0;
-  let sumBoxes = 0;
-  for (let i = 0; i < rows.length; i++) {
-    let marketAmount = rows[i].cells[4].innerText;
-    let partyAmount = rows[i].cells[5].innerText;
-    let boxes = rows[i].cells[2].innerText;
-    if (marketAmount != "-") {
-      sumMarketAmount += parseInt(marketAmount.replace(/,/g, ""));
-    }
-    if (partyAmount != "-") {
-      sumPartyAmount += parseInt(partyAmount.replace(/,/g, ""));
-    }
-    if (boxes != "-") {
-      sumBoxes += parseInt(boxes.replace(/,/g, ""));
-    }
-  }
-  document.getElementById("sumBoxes").innerText = sumBoxes.toLocaleString(
-    "en-IN",
-    { useGrouping: true }
-  );
-  document.getElementById("sumMarketAmount").innerText =
-    sumMarketAmount.toLocaleString("en-IN", { useGrouping: true });
-  document.getElementById("sumPartyAmount").innerText =
-    sumPartyAmount.toLocaleString("en-IN", { useGrouping: true });
-  document.getElementById("sumProfitLoss").innerText = `${(
-    sumPartyAmount - sumMarketAmount
-  ).toLocaleString("en-IN", { useGrouping: true })}`;
-}
 
 const generateReportHandler = async () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -44,43 +10,84 @@ const generateReportHandler = async () => {
   const toDate = urlParams.get("toDate");
   const url = `/generateReport?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
   const response = await fetch(url);
-  const data = await response.json();
-  return data;
+  return await response.json();
 };
+
 const colorProfitLoss = () => {
   const col = document.querySelectorAll("td:nth-child(7)");
   col.forEach((e) => {
-    const value = parseFloat(e.innerText.replace(/[^0-9.-]+/g, ""));
-    if (value < 0) {
-      e.style.color = "red";
-    } else {
-      e.style.color = "green";
-    }
+    const value = parseFloat(e.innerText.replace(/[^0-9.-]+/g, "")) || 0;
+    e.style.color = value < 0 ? "red" : "green";
   });
 };
+
 const showVendorMasterReport = async () => {
   try {
     const data = await generateReportHandler();
 
-    // Formatter for English grouping
+    // Formatter for Indian-style number grouping
     const formatter = new Intl.NumberFormat("en-IN");
 
+    // ✅ Reset total variables before summing
+    let totalBoxes = 0;
+    let totalWeight = 0;
+    let totalMarketAmount = 0;
+    let totalPartyAmount = 0;
+    let totalProfitLoss = 0;
+
+    const tableBody = document.getElementById("data-table-table");
+    const tableFoot = document.querySelector("#table tfoot");
+
+    tableBody.innerHTML = ""; // ✅ Clear previous table rows
+    tableFoot.innerHTML = ""; // ✅ Clear previous total row
+
     data.forEach((e) => {
+      // ✅ Convert values to numbers and handle missing/null values
+      let boxes = parseFloat((e.totalBoxes || "0").toString().replace(/,/g, "")) || 0;
+      let weight = parseFloat((e.totalWeight || "0").toString().replace(/,/g, "")) || 0;
+      let marketAmount = parseFloat((e.marketAmount || "0").toString().replace(/,/g, "")) || 0;
+      let partyAmount = parseFloat((e.paymentAmount || "0").toString().replace(/,/g, "")) || 0;
+      let profitLoss = parseFloat((e.profitLoss || "0").toString().replace(/,/g, "")) || 0;
+
+      // ✅ Sum up totals
+      totalBoxes += boxes;
+      totalWeight += weight;
+      totalMarketAmount += marketAmount;
+      totalPartyAmount += partyAmount;
+      totalProfitLoss += profitLoss;
+
+      // ✅ Create and append row for each vendor
       const row = document.createElement("tr");
       row.innerHTML = `
-          <tr>
-            <td class="vendorId">${e.vendorId}</td>
-            <td class="vendorFirm">${e.vendorFirm}</td>
-            <td class="totalBoxes">${formatter.format(e.totalBoxes)}</td>
-            <td class="totalWeight">${formatter.format(e.totalWeight)}</td>
-            <td class="marketAmount">${formatter.format(e.marketAmount)}</td>
-            <td class="paymentAmount">${formatter.format(e.paymentAmount)}</td>
-            <td class="profitLoss">${formatter.format(e.profitLoss)}</td>
-          </tr>`;
-      document.getElementById("data-table-table").appendChild(row);
+        <td class="vendorId">${e.vendorId}</td>
+        <td class="vendorFirm">${e.vendorFirm}</td>
+        <td class="totalBoxes">${formatter.format(boxes)}</td>
+        <td class="totalWeight">${formatter.format(weight)}</td>
+        <td class="marketAmount">${formatter.format(marketAmount)}</td>
+        <td class="partyAmount">${formatter.format(partyAmount)}</td>
+        <td class="profitLoss">${formatter.format(profitLoss)}</td>
+      `;
+      tableBody.appendChild(row);
     });
 
-    colorProfitLoss();
+    // ✅ Create and append the total row
+    const totalRow = document.createElement("tr");
+    totalRow.classList.add("table-success"); // ✅ Bootstrap green background
+    totalRow.style.fontWeight = "bold";
+
+    totalRow.innerHTML = `
+      <td colspan="2" style="text-align:center;">Total:</td>
+      <td>${formatter.format(totalBoxes)}</td>
+      <td>${formatter.format(totalWeight)}</td>
+      <td>${formatter.format(totalMarketAmount)}</td>
+      <td>${formatter.format(totalPartyAmount)}</td>
+      <td>${formatter.format(totalProfitLoss)}</td>
+    `;
+
+    tableFoot.appendChild(totalRow); // ✅ Append total row
+
+    colorProfitLoss(); // ✅ Apply color formatting
+
   } catch (error) {
     console.error("Error loading report:", error);
   }
@@ -150,9 +157,8 @@ function exportToPDF() {
 function exportToXLSX() {
   const tableContainer = document.getElementById("table-responsive");
   const date = new Date();
-  let filename = `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()}`;
+  let filename = `${date.getFullYear()}-${date.getMonth() + 1
+    }-${date.getDate()}`;
   const wb = XLSX.utils.table_to_book(tableContainer, { sheet: filename });
   XLSX.writeFile(wb, `${filename}.xlsx`);
 }
