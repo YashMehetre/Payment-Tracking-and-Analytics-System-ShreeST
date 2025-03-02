@@ -12,6 +12,8 @@ var usersRouter = require("./routes/users");
 var app = express();
 
 // Set up express-handlebars
+
+
 app.engine(
   "hbs",
   exphbs.engine({
@@ -33,6 +35,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Apply authentication middleware to protect all routes
 var authenticate = require("./middlewares/auth.middleware.js"); // Import the authentication middleware
+
 
 app.get("/", function (req, res, next) {
   res.render("index", { title: "Login" });

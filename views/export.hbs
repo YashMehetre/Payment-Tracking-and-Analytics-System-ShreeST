@@ -1,35 +1,72 @@
-<div class="white-box">
-    <h6>Choose the Report Type :</h6>
-    <select class="custom-select" id="reportType" name="reportType">
-        <option value="1">Loading Report</option>
-        <option value="2">Vendorwise Loading Report</option>
-        <option value="3">Loading Vendor Deposit/Pending Amount Report</option>
-        <option value="4">Profit Loss Master Report</option>
-        <option value="5">Pending Amount Master Report</option>
-    </select>
+<div class="row">
+            <div class="col-md-12">
+              <div class="white-box">
 
-    <div class="row">
-        <div class="form-group col-md-4">
-            <label for="reportFromDate">From</label>
-            <input type="date" class="form-control" id="reportFromDate" name="reportFromDate" required/>
-        </div>
-        <div class="form-group col-md-4">
-            <label for="reportToDate">To</label>
-            <input type="date" class="form-control" id="reportToDate" name="reportToDate" required/>
-        </div>
-    </div>
-
-    {{!-- Vendor selection dropdown (Initially Hidden) --}}
-    <div class="row selectVendor" style="display: none;">
-        <div class="form-group col-md-4">
-            <label for="vendorFirmName">Vendor Firm</label>
-            <select class="form-control" id="vendorFirmName" name="vendorFirmName">
-                <option value="">Select Vendor</option>
-            </select>
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-success" id="generateReportBtn">Generate Report</button>
-</div>
-
-<script src="/js/export.js"></script>
+                <h6>Choose the Report Type :</h6>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label
+                      class="input-group-text"
+                      for="reportType"
+                    >Options</label>
+                  </div>
+                  <select
+                    class="custom-select"
+                    id="reportType"
+                    name="reportType"
+                    {{! onchange="showSelectVendor()" }}
+                  >
+                    <option value="1">Loading Report</option>
+                    <option value="2">Vendorwise Loading Report</option>
+                    <option value="3">Loading Vendor Deposit/Pending Amount
+                      Report</option>
+                    <option value="4">Profit Loss Master Report</option>
+                    <option value="5">Pending Amount Master Report</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <label for="reportFromDate">From</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="reportFromDate"
+                      name="reportFromDate"
+                    />
+                  </div><div class="form-group col-md-4">
+                    <label for="reportToDate">To</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="reportToDate"
+                      name="reportToDate"
+                    />
+                  </div>
+                </div>
+                <div class="row selectVendor" style="display: none;">
+                  <h6>Choose the Vendor Firm Name :</h6>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label
+                        class="input-group-text"
+                        for="vendorFirmName"
+                      >Vendor Firm</label>
+                    </div>
+                    <select
+                      class="custom-select"
+                      id="vendorFirmName"
+                      name="vendorFirmName"
+                    >
+                      <option value="" selected></option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  onclick="generateReportButtonAction()"
+                >Generate Report</button>
+              </div>
+            </div>
+          </div>
+<script src="js/export.js"></script>

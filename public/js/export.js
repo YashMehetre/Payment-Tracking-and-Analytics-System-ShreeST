@@ -1,68 +1,54 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const reportTypeSelect = document.getElementById("reportType");
-  const vendorSection = document.querySelector(".selectVendor");
-  const vendorSelect = document.getElementById("vendorFirmName");
-  const generateReportBtn = document.getElementById("generateReportBtn");
+// console.log("export.js loaded");
+document
+  .getElementById("reportType")
+  .addEventListener("change", showSelectVendor);
+const fetchVendorsForSelect = async () => {
+  const response = await fetch("/fetchVendorsForSelect");
+  const data = await response.json();
+  return data;
+};
 
-  reportTypeSelect.addEventListener("change", async () => {
-    const reportType = reportTypeSelect.value;
-
-    if (reportType === "2" || reportType === "3") {
-      vendorSection.style.display = "block";
-      await populateVendorDropdown();
-    } else {
-      vendorSection.style.display = "none";
-      vendorSelect.innerHTML = `<option value="">Select Vendor</option>`; // Reset vendors
-    }
+const showVendorsForSelect = async () => {
+  const data = await fetchVendorsForSelect();
+  data.forEach((e) => {
+    let option = document.createElement("option");
+    option.innerHTML = `<option value="${e.vendorId}">${e.vendorFirm}</option>`;
+    document.getElementById("vendorFirmName").appendChild(option);
   });
+  let reportType = document.getElementById("reportType").value;
+  console.log(reportType);
+};
 
-  generateReportBtn.addEventListener("click", generateReport);
-
-  async function fetchVendorsForSelect() {
-    try {
-      const response = await fetch("/fetchVendorsForSelect");
-      if (!response.ok) throw new Error("Failed to fetch vendors");
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching vendors:", error);
-      return [];
-    }
+function showSelectVendor() {
+  let reportType = document.getElementById("reportType").value;
+  if (reportType != 1 && reportType != 4 && reportType != 5) {
+    document.querySelector(".selectVendor").style.display = "block";
+    showVendorsForSelect();
+    document
+      .querySelector(".selectVendor")
+      .setAttribute("required", "required");
+  } else {
+    document.querySelector(".selectVendor").style.display = "none";
+    document.querySelector(".selectVendor").removeAttribute("required");
   }
-
-  async function populateVendorDropdown() {
-    const vendors = await fetchVendorsForSelect();
-    vendorSelect.innerHTML = `<option value="">Select Vendor</option>`; // Reset dropdown
-    vendors.forEach(({ vendorId, vendorFirm }) => {
-      const option = document.createElement("option");
-      option.value = vendorId;
-      option.textContent = vendorFirm;
-      vendorSelect.appendChild(option);
-    });
+}
+function generateReportButtonAction() {
+  let reportType = document.getElementById("reportType").value;
+  console.log(reportType);
+  let fromDate = document.getElementById("reportFromDate").value;
+  let toDate = document.getElementById("reportToDate").value;
+  if (reportType == "1") {
+    window.location.href = `/showReport?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
+  } else if (reportType == "2") {
+    let vendorFirmName = document.getElementById("vendorFirmName").value;
+    window.location.href = `/showReport?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
+  } else if (reportType == "3") {
+    let vendorFirmName = document.getElementById("vendorFirmName").value;
+    window.location.href = `/showReportType3?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
+  } else if (reportType == "4") {
+    window.location.href = `/showReportType4?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
   }
-
-  function generateReport() {
-    const reportType = reportTypeSelect.value;
-    const fromDate = document.getElementById("reportFromDate").value;
-    const toDate = document.getElementById("reportToDate").value;
-    const vendorFirmName = vendorSelect?.value || "";
-
-    if (!fromDate || !toDate) {
-      alert("Please select both From and To dates.");
-      return;
-    }
-
-    let url = `/showReport?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
-
-    if (reportType === "2") {
-      url = `/showReport?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
-    } else if (reportType === "3") {
-      url = `/showReportType3?reportType=${reportType}&vendorFirmName=${vendorFirmName}&fromDate=${fromDate}&toDate=${toDate}`;
-    } else if (reportType === "4") {
-      url = `/showReportType4?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
-    } else if (reportType === "5") {
-      url = `/showReportType5?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
-    }
-
-    window.location.href = url;
+  else if (reportType == "5") {
+    window.location.href = `/showReportType5?reportType=${reportType}&fromDate=${fromDate}&toDate=${toDate}`;
   }
-});
+}
