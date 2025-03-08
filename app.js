@@ -21,6 +21,7 @@ app.engine(
     defaultLayout: "main", // Default layout file
     layoutsDir: path.join(__dirname, "views/layouts"), // Layouts folder
     partialsDir: path.join(__dirname, "views/partials"), // Partials folder
+
   })
 );
 app.set("view engine", "hbs");
@@ -38,8 +39,9 @@ var authenticate = require("./middlewares/auth.middleware.js"); // Import the au
 
 
 app.get("/", function (req, res, next) {
-  res.render("index", { title: "Login" });
+  res.render("index", { title: "Login", layout: false }); // Disable layout for login page
 });
+app.use(authenticate);
 
 app.post("/login", authenticate, function (req, res, next) {
   res.redirect("/dashboard");

@@ -23,7 +23,7 @@ function setCookieWithExpiry(res, authToken, maxAge) {
     // Calculate the expiration time based on the current time and the specified maxAge
     const expirationTime = new Date(Date.now() + maxAge);
     // Set the cookie with the authToken, maxAge, and expiration time
-    res.cookie('authToken', authToken, { maxAge: maxAge, expires: expirationTime, secure: true, sameSite: 'strict'});
+    res.cookie('authToken', authToken, { maxAge: maxAge, expires: expirationTime, secure: true, sameSite: 'strict' });
 }
 
 // Middleware function to authenticate users
@@ -42,7 +42,7 @@ async function authenticate(req, res, next) {
         // Check if username and password are provided
         if (!username || !password) {
             // If username or password is missing, proceed to the next middleware with an error
-            return next(new Error('Username and Password are required'));   
+            return next(new Error('Username and Password are required'));
         }
 
         // Find the user with the provided username
@@ -72,7 +72,7 @@ async function authenticate(req, res, next) {
             };
             // Set the session token as a cookie with expiration time
             setCookieWithExpiry(res, authToken, maxAge);
-            
+
             // Move to the next middleware
             next();
         });

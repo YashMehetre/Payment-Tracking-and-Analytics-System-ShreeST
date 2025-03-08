@@ -13,7 +13,7 @@ async function logout() {
         });
         const data = await response.json();
         if (data.success) {
-            window.location.href = "/login";
+            window.location.href = "/";
         }
     } catch (error) {
         console.log(error);
