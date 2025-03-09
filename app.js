@@ -4,11 +4,28 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const conn = require("./modules/database");
+const exphbs = require("express-handlebars");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var app = express();
+
+// Set up express-handlebars
+
+
+app.engine(
+  "hbs",
+  exphbs.engine({
+    extname: "hbs",
+    defaultLayout: "main", // Default layout file
+    layoutsDir: path.join(__dirname, "views/layouts"), // Layouts folder
+    partialsDir: path.join(__dirname, "views/partials"), // Partials folder
+
+  })
+);
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
 
 // Middleware setup
 app.use(logger("dev"));
@@ -17,25 +34,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
-
 // Apply authentication middleware to protect all routes
 var authenticate = require("./middlewares/auth.middleware.js"); // Import the authentication middleware
 
+
 app.get("/", function (req, res, next) {
-  res.render("index", { title: "Login" });
+  res.render("index", { title: "Login", layout: false }); // Disable layout for login page
 });
+app.use(authenticate);
 
 app.post("/login", authenticate, function (req, res, next) {
   res.redirect("/dashboard");
 });
 
-// app.use(authenticate);
-
 // Routes setup
-
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
@@ -47,7 +59,6 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // Handle specific error messages
   if (err.message === "Username and Password are required") {
-    // Redirect to the "/" route
     return res.redirect("/");
   }
   res.locals.message = err.message;
