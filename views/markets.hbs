@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h5 id="updateDetailsTitle" style="display: none; color: rgb(51, 164, 51);">
+                    Update Market Details
+                </h5>
+
+                <p>
+                    <span style="color: red;">*</span> 
+                    Note: You cannot delete a Market once added, you can only edit it.
+                </p>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="marketName">Market Name</label>
+                        <input type="text" class="form-control" id="marketName" name="marketName" placeholder="Enter Market Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="marketLocation">Market Location</label>
+                        <input type="text" class="form-control" id="marketLocation" name="marketLocation" placeholder="Enter Market Location">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="marketGST">GST Number (Optional)</label>
+                        <input type="text" class="form-control" id="marketGST" name="marketGST" placeholder="Enter GST Number (if available)">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="marketStatus">Market Status</label>
+                        <select id="marketStatus" name="marketStatus" class="form-control">
+                            <option value="">Choose...</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" id="updateDetailsBtn" style="display: none;">Update Market</button>
+                <button type="submit" class="btn btn-success" id="addDetailsBtn" onclick="addMarket()">Add Market</button>
+                <button class="btn btn-danger" id="cancelAction" onclick="cancelUpdateDetails()">Cancel</button>
+
+                <br /><br />
+                <button class="btn btn-primary" onclick="scrollToTable()">Edit an Existing Market</button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Market Branches</h3>
+                <div class="table-responsive">
+                    <table class="table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">Market Name</th>
+                                <th class="border-top-0">Market Location</th>
+                                <th class="border-top-0">GST Number</th>
+                                <th class="border-top-0">Market Status</th>
+                                <th class="border-top-0">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="markets"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/markets.js"></script>

@@ -58,6 +58,14 @@ const {
   handleSendTemplateMessage,
   handleSendPendingPartyAmountMessage,
 } = require("../handlers/wp-notificationHandlers");
+
+const {
+  handleAddMarket,
+  handleFetchMarkets,
+  handleGetMarketDetails,
+  handleUpdateMarket,
+} = require("../handlers/marketHandlers");
+
 /* GET home page. */
 router.get("/dashboard", function (req, res, next) {
   res.render("dashboard", { title: "Dashboard" });
@@ -103,6 +111,9 @@ router.get("/addPaymentMode", function (req, res, next) {
 });
 router.get("/export", function (req, res, next) {
   res.render("export", { title: "Export" });
+});
+router.get("/markets", function (req, res, next) {
+  res.render("markets", { title: "Markets" });
 });
 
 // Routes using handler functions
@@ -151,35 +162,31 @@ router.get("/generateReport", generateReportHandler);
 
 router.get("/showReport", function (req, res) {
   res.render("showReport", {
-    title: `${
-      req.query.reportType == 2
-        ? "Vendorwise Loading Report"
-        : req.query.reportType == 2
+    title: `${req.query.reportType == 2
+      ? "Vendorwise Loading Report"
+      : req.query.reportType == 2
         ? "Loading Vendor Deposit/Pending Amount Report"
         : "Loading Report"
-    }`,
+      }`,
     fromDate: `${req.query.fromDate}`,
     toDate: `${req.query.toDate}`,
-    vendorFirmName: `${
-      req.query.reportType == 1 ? "All" : req.query.vendorFirmName
-    }`,
+    vendorFirmName: `${req.query.reportType == 1 ? "All" : req.query.vendorFirmName
+      }`,
   });
 });
 router.get("/addBillPaymentAmount", handleAddBillPaymentAmount);
 router.get("/showReportType3", function (req, res) {
   res.render("showReport3", {
-    title: `${
-      req.query.reportType == 2
-        ? "Vendorwise Loading Report"
-        : req.query.reportType == 3
+    title: `${req.query.reportType == 2
+      ? "Vendorwise Loading Report"
+      : req.query.reportType == 3
         ? "Loading Vendor Deposit/Pending Amount Report"
         : "Loading Report"
-    }`,
+      }`,
     fromDate: `${req.query.fromDate}`,
     toDate: `${req.query.toDate}`,
-    vendorFirmName: `${
-      req.query.reportType == 1 ? "All" : req.query.vendorFirmName
-    }`,
+    vendorFirmName: `${req.query.reportType == 1 ? "All" : req.query.vendorFirmName
+      }`,
   });
 });
 router.get("/showReportType4", function (req, res) {
@@ -227,9 +234,16 @@ router.get("/seasonalProfitabilityTrends", function (req, res) {
   ]);
 });
 
+//wp-notification Module
 router.post("/sendTemplateMessage", handleSendTemplateMessage);
 router.post(
   "/sendPendingPartyAmountMessage",
   handleSendPendingPartyAmountMessage
 );
+
+router.post("/addMarket", handleAddMarket);
+router.get("/fetchMarkets", handleFetchMarkets);
+router.get("/getMarketDetails/:marketId", handleGetMarketDetails);
+router.post("/updateMarket", handleUpdateMarket);
+
 module.exports = router;
