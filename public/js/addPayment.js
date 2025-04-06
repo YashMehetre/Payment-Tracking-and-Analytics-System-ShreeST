@@ -165,6 +165,9 @@ async function searchPaymentData() {
     }
   }
 }
+document
+  .getElementById("searchPaymentData")
+  .addEventListener("click", searchPaymentData);
 
 const fetchPaymentDetails = async (paymentId) => {
   const response = await fetch("/fetchPaymentDetails?paymentId=" + paymentId);
